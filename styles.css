@@ -1,0 +1,1403 @@
+/* ==================== Base Styles & Variables ==================== */
+:root {
+    /* Paleta de Colores Principal (Rosa/Violeta) - Puedes cambiarla si quieres */
+    --pink-50: #fdf2f8;
+    --pink-100: #fce7f3;
+    --pink-200: #fbcfe8;
+    --pink-300: #f9a8d4;
+    --pink-400: #f472b6;
+    --pink-500: #ec4899; /* Color Primario */
+    --pink-600: #db2777;
+    --pink-700: #be185d;
+    --pink-800: #9d174d;
+    --pink-900: #831843;
+
+    --purple-50: #faf5ff;
+    --purple-100: #f3e8ff;
+    --purple-200: #e9d5ff;
+    --purple-300: #d8b4fe;
+    --purple-400: #c084fc;
+    --purple-500: #a855f7; /* Color Secundario */
+    --purple-600: #9333ea;
+    --purple-700: #7e22ce; /* Color Texto Principal */
+    --purple-800: #6b21a8;
+    --purple-900: #581c87;
+
+    /* Colores Neutros */
+    --white: #ffffff;
+    --gray-50: #f9fafb; /* Más claro para fondos */
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151; /* Para textos más oscuros */
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+
+
+    /* Colores de Feedback */
+    --success-color: #10b981; /* Un verde éxito */
+    --warning-color: #f59e0b; /* Un ámbar advertencia */
+    --error-color: #ef4444;   /* Un rojo error */
+
+    /* Sombras y Bordes */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius: 0.5rem; /* Bordes redondeados consistentes */
+    --border-light: 1px solid var(--gray-200); /* Borde más sutil */
+    --border-medium: 1px solid var(--gray-300);
+
+
+    /* Tipografía */
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Scroll suave para enlaces internos */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.65; /* Un poco más de interlineado para textos largos */
+    color: var(--gray-700); /* Color de texto base más oscuro y neutro */
+    background: var(--gray-50); /* Fondo base más claro */
+    min-height: 100vh;
+    font-size: 16px; /* Base font size */
+}
+
+/* Contenedor Principal */
+.container {
+    width: 100%;
+    max-width: 1140px; /* Un ancho estándar para mejor lectura en desktop */
+    margin: 0 auto;
+    padding: 0 1rem; /* Padding lateral para móviles y tablets */
+}
+
+/* Tipografía */
+h1, h2, h3, h4 {
+    color: var(--gray-900); /* Títulos más oscuros */
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem; /* Espaciado inferior por defecto */
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Tamaño fluido, un poco más grande */
+    text-align: center;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--purple-800); /* Mantener un toque de color distintivo */
+}
+
+h3 {
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    color: var(--purple-700);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--pink-700); /* Usar el rosa para destacar subtítulos */
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1.25rem; /* Más espacio entre párrafos */
+    color: var(--gray-600);
+}
+
+a {
+    text-decoration: none;
+    color: var(--pink-600); /* Mantener color de acento para enlaces */
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--pink-700);
+    text-decoration: underline; /* Subrayar en hover para más claridad */
+}
+
+ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+li {
+    margin-bottom: 0.6rem; /* Un poco más de espacio entre ítems de lista */
+}
+ul {
+    list-style-type: disc; /* Estilo de lista estándar */
+}
+
+strong {
+    font-weight: 600;
+    color: var(--gray-800); /* Resaltados un poco más oscuros */
+}
+
+/* Secciones */
+section {
+    padding: 3rem 0; /* Espaciado vertical entre secciones */
+}
+section:nth-child(even) {
+     background-color: var(--white); /* Alternar fondos */
+}
+
+
+/* Clases Utilitarias */
+.hidden {
+    display: none !important;
+}
+.text-center {
+    text-align: center;
+}
+.small-text {
+    font-size: 0.875rem; /* 14px si la base es 16px */
+    color: var(--gray-500);
+    margin-bottom: 0.5rem;
+}
+.instruction-text {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+.disclaimer {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: 1rem;
+    text-align: center;
+}
+.full-width {
+    width: 100%;
+    display: block; /* Para que ocupe el ancho */
+    margin-top: 0.5rem;
+}
+.small-margin { margin-bottom: 0.5rem !important; }
+.link-highlight {
+    font-weight: 600;
+    color: var(--pink-600);
+}
+
+/* ==================== Botones ==================== */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem; /* Padding ajustado */
+    border-radius: var(--radius); /* Bordes estándar */
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; /* Transición más suave */
+    text-align: center;
+    border: 1px solid transparent; /* Borde base transparente */
+    line-height: 1.4; /* Mejor alineación vertical */
+    white-space: nowrap; /* Evitar que el texto salte a otra línea */
+}
+
+.btn-lg { /* Botón más grande */
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: var(--pink-500);
+    color: var(--white);
+    box-shadow: var(--shadow);
+}
+.btn-primary:hover {
+    background-color: var(--pink-600);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+}
+
+.btn-secondary {
+    background-color: var(--purple-500);
+    color: var(--white);
+}
+.btn-secondary:hover {
+    background-color: var(--purple-600);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--pink-400); /* Borde más visible */
+    color: var(--pink-600);
+    padding: 0.7rem 1.4rem; /* Ligeramente más pequeño */
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-outline:hover {
+    background-color: var(--pink-50);
+    border-color: var(--pink-500);
+    color: var(--pink-700);
+}
+
+.btn-delete-row {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px; /* Un poco más grande */
+    height: 28px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 28px; /* Centrar el 'X' */
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-delete-row:hover {
+    background-color: #cc2222; /* Rojo más oscuro */
+    transform: scale(1.1);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--pink-600);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0;
+    margin-top: 0.25rem;
+}
+.btn-link:hover {
+    color: var(--pink-700);
+}
+
+/* ==================== Estilos de Formularios ==================== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile first */
+    gap: 1.3rem; /* Espacio entre elementos del grid */
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espacio entre label e input */
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    display: flex; /* Para alinear tooltip */
+    align-items: center;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea { /* Añadido textarea */
+    padding: 0.8rem 1rem; /* Padding interno */
+    border: var(--border-medium);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%; /* Ocupar todo el ancho disponible */
+    background-color: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-group input[type="number"] {
+    appearance: textfield; /* Ocultar flechas en Firefox */
+    -moz-appearance: textfield; /* Para Firefox */
+}
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Ocultar flechas en Chrome/Safari */
+    margin: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--pink-500); /* Color de acento en foco */
+    box-shadow: 0 0 0 3px var(--pink-100); /* Indicador de foco más suave */
+}
+
+.input-with-select {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center; /* Alinear verticalmente */
+}
+.input-with-select input {
+    flex: 1; /* El input ocupa el espacio restante */
+}
+.input-with-select select {
+    width: auto; /* Ancho automático basado en contenido */
+    min-width: 110px; /* Ancho mínimo para unidades un poco más grande */
+    flex-shrink: 0; /* Evitar que se encoja */
+}
+
+/* Estilo para Selects (Dropdowns) - SUGERENCIA */
+/* Puedes descomentar y adaptar esto si quieres personalizar más los selects */
+/*
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23%24{encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--gray-500').trim())}%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 10px 10px;
+    padding-right: 2.5rem;
+}
+*/
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 0.4rem; /* Un poco más de espacio */
+}
+.tooltip .tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Icono más grande */
+    height: 20px;
+    background-color: var(--gray-300); /* Color más neutro */
+    color: var(--gray-700);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: help;
+}
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 240px; /* Ancho del tooltip */
+    background-color: var(--gray-800); /* Fondo oscuro para tooltip */
+    color: white;
+    text-align: left;
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem; /* Buen padding */
+    position: absolute;
+    z-index: 10;
+    bottom: 140%; /* Posición arriba del icono */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Añadir visibility a la transición */
+    font-size: 0.85rem;
+    font-weight: normal;
+    box-shadow: var(--shadow-md);
+    pointer-events: none; /* Evitar que interfiera con el hover */
+}
+.tooltip .tooltip-text::after { /* Flecha del tooltip */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px; /* Ajustar para flecha más grande */
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--gray-800) transparent transparent transparent;
+}
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Advertencias de Unidades */
+.unit-warning {
+    color: var(--error-color);
+    font-size: 0.85rem; /* Un poco más visible */
+    margin-top: 0.5rem; /* Espacio sobre la advertencia */
+    font-weight: 500;
+}
+.unit-warning:not(.hidden) { /* Para que ocupe espacio solo si es visible */
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos específicos para resultados de calculadora rápida */
+.result-card {
+    background-color: var(--purple-50); /* Un fondo suave diferente */
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+.result-card h3 {
+    margin-bottom: 0.75rem; /* Ajuste */
+    color: var(--purple-800);
+}
+.result-card p#result-text { /* ID específico */
+    font-size: 1.15rem; /* Tamaño ajustado */
+    font-weight: 600;
+    color: var(--purple-700); /* Color de texto principal */
+    margin-bottom: 1.25rem;
+    word-wrap: break-word; /* Para que el texto no se desborde */
+}
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Más espacio entre botones */
+    flex-wrap: wrap; /* Para que quepan en móvil */
+}
+
+/* Información de cálculo (dentro de calculator-card) */
+.calculation-info {
+    background-color: var(--gray-50); /* Fondo muy sutil */
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+.calculation-info h4 {
+    margin-bottom: 0.5rem;
+    color: var(--purple-700);
+}
+.calculation-info p {
+    margin-bottom: 0.5rem;
+    color: var(--gray-600); /* Texto un poco más claro */
+}
+.calculation-formula {
+    background-color: var(--white);
+    padding: 0.8rem 1rem; /* Padding */
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-300);
+    text-align: center;
+    font-weight: 500;
+    color: var(--purple-800);
+    margin-top: 0.75rem;
+    font-size: 0.9rem; /* Más pequeño */
+    word-break: break-word; /* Para que la fórmula no desborde en móviles */
+}
+
+/* Divisor horizontal */
+hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--gray-200);
+    margin: 1.5rem 0;
+}
+
+/* Estilos para inputs condicionales */
+.conditional-inputs h4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--gray-700);
+}
+.dimensions-grid { /* Grid específico para dimensiones */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+/* ==================== Estructura General de Secciones ==================== */
+.section-intro {
+    max-width: 750px; /* Ancho máximo para intros */
+    margin: 0 auto 2.5rem; /* Más margen inferior */
+    text-align: center;
+    font-size: 1.1rem; /* Un poco más grande */
+    color: var(--gray-600);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 3rem 0 2rem 0; /* Menos padding inferior */
+    background: linear-gradient(to bottom, var(--purple-50) 0%, var(--white) 100%); /* Degradado suave */
+}
+.hero h1 {
+    margin-bottom: 0.75rem; /* Ajuste */
+    color: var(--purple-800); /* Color distintivo */
+}
+.hero .intro-text {
+    font-size: 1.15rem; /* Ligeramente más grande */
+    color: var(--gray-700);
+    margin-bottom: 2.5rem;
+    max-width: 700px; /* Ajuste de ancho */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Calculadora Rápida */
+.calculator-section {
+    padding-bottom: 2rem;
+}
+.calculator-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem; /* Más padding */
+    max-width: 800px; /* Ajuste de ancho */
+    margin: 0 auto;
+}
+
+/* Sección Educativa Básica */
+.basic-concepts {
+    /* background-color: var(--gray-50); */ /* Ya puesto en section:nth-child(even) */
+}
+.edu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* Más espacio */
+    margin-bottom: 2.5rem;
+}
+.edu-card {
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex; /* Para alinear contenido */
+    flex-direction: column;
+}
+.edu-card-header {
+    background-color: var(--purple-100); /* Color de acento suave */
+    padding: 1rem 1.25rem;
+    border-bottom: var(--border-light);
+}
+.edu-card-header h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--purple-800);
+}
+.edu-card-header span { /* Para el subtítulo entre paréntesis */
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
+}
+.edu-card-content {
+    padding: 1.25rem 1.5rem;
+    flex-grow: 1; /* Para que ocupe espacio */
+}
+.edu-card-content p {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+}
+.edu-card-content ul {
+    margin-bottom: 0;
+    padding-left: 1.2rem;
+}
+.edu-card-content li {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--gray-600);
+}
+.edu-card-content strong {
+    color: var(--gray-700);
+}
+
+/* Nota sobre Valor del Tiempo */
+.value-time-note {
+    background-color: var(--pink-50); /* Color de acento */
+    border: 1px solid var(--pink-200);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem; /* Más padding */
+    text-align: center;
+    margin: 2.5rem auto;
+    max-width: 700px;
+    box-shadow: var(--shadow-md);
+}
+.value-time-note h3 {
+    color: var(--pink-800);
+}
+.value-time-note p {
+    color: var(--pink-700);
+    font-size: 1.05rem;
+}
+
+/* Fórmula Simplificada */
+.formula-card.simplified {
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+}
+.formula-card.simplified .formula-card-header {
+    padding: 0.8rem 1rem;
+    background-color: var(--gray-100); /* Fondo neutro */
+}
+.formula-card.simplified .formula-card-header h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.15rem; /* Un poco más grande */
+    color: var(--gray-800);
+}
+.formula-card.simplified .formula-card-content {
+    padding: 1.25rem 1.5rem;
+}
+.formula-card.simplified .formula-box {
+    background-color: var(--purple-50); /* Color de acento suave */
+    border: 1px solid var(--purple-200);
+    padding: 1rem; /* Más padding */
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--purple-800);
+    border-radius: var(--radius);
+}
+.formula-card.simplified .formula-box p {
+    margin: 0;
+    font-size: 1rem; /* Más legible */
+    line-height: 1.5;
+}
+
+/* Calculadora Gastos Fijos */
+.fixed-costs-section {
+    background-color: var(--purple-50); /* Fondo de sección distintivo */
+}
+.fixed-costs-calculator {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 2rem; /* Más padding */
+    max-width: 850px; /* Más ancho para esta calculadora */
+    margin: 0 auto;
+}
+.fixed-costs-grid {
+    gap: 1.25rem; /* Espacio entre campos */
+}
+.fixed-costs-calculator h4 {
+    font-size: 1.2rem; /* Subtítulos más grandes */
+    margin-bottom: 1.25rem;
+    text-align: center;
+    color: var(--purple-700);
+}
+.fixed-costs-total {
+    background-color: var(--pink-100);
+    border-radius: var(--radius);
+    padding: 1.25rem; /* Más padding */
+    text-align: center;
+    margin: 1.5rem 0;
+    border: 1px solid var(--pink-200);
+}
+.fixed-costs-total h4 {
+    margin: 0;
+    color: var(--purple-800);
+    font-size: 1.15rem;
+}
+.fixed-costs-total span {
+    font-weight: 700;
+    color: var(--pink-700);
+    font-size: 1.25rem; /* Destacar el total */
+}
+.fixed-costs-distribution {
+    background-color: var(--white); /* Fondo limpio */
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+.distribution-result {
+    margin-top: 1.25rem;
+    text-align: center;
+    background-color: var(--purple-50);
+    padding: 1rem;
+    border-radius: var(--radius);
+}
+.distribution-result h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+.distribution-result span {
+    font-weight: 700;
+    color: var(--purple-700);
+    font-size: 1.2rem;
+}
+.distribution-result p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--gray-600);
+}
+
+
+/* ==================== Ejemplo Práctico Mueble ==================== */
+.cake-example-section {
+    /* background-color: var(--white); Ya está en section:nth-child(even) */
+}
+
+.cake-tabs {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: var(--border-medium);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background-color: var(--white);
+}
+
+/* Pestañas (Tabs) */
+.tabs-header {
+    display: flex;
+    overflow-x: auto; /* Scroll horizontal en móvil */
+    background-color: var(--gray-100); /* Fondo más neutro para pestañas */
+    border-bottom: var(--border-medium);
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    scrollbar-width: thin; /* Scrollbar fino en Firefox */
+    scrollbar-color: var(--gray-400) var(--gray-100); /* Colores de scrollbar */
+}
+.tabs-header::-webkit-scrollbar { /* Para Chrome/Safari */
+    height: 8px;
+}
+.tabs-header::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+
+.tab-btn {
+    padding: 0.9rem 1.25rem; /* Padding ajustado */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem; /* Un poco más grande para pestañas */
+    color: var(--gray-600); /* Color de pestaña inactiva */
+    white-space: nowrap; /* Evitar salto de línea */
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s ease-in-out;
+    flex-shrink: 0; /* Evitar que se encojan */
+}
+.tab-btn:hover {
+    background-color: var(--gray-200); /* Hover más sutil */
+    color: var(--purple-700);
+}
+.tab-btn.active {
+    color: var(--purple-700); /* Color activo */
+    border-bottom-color: var(--purple-500); /* Indicador activo */
+    background-color: var(--white); /* Pestaña activa con fondo blanco */
+}
+.tabs-content {
+    padding: 2rem; /* Padding interno de tabs más generoso */
+}
+.tab-content { display: none; }
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out; /* Animación suave */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para Tablas Responsivas (reutilizados) */
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: var(--border-light); /* Añadir borde a la tabla */
+    border-radius: var(--radius); /* Redondear esquinas de la tabla */
+}
+.responsive-table thead th {
+    background-color: var(--gray-100); /* Fondo de cabecera más neutro */
+    padding: 0.75rem 1rem; /* Padding de celdas */
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-700); /* Texto de cabecera */
+    border-bottom: 2px solid var(--gray-300); /* Borde inferior más grueso */
+}
+.responsive-table tbody td {
+    padding: 0.75rem 1rem;
+    border-top: var(--border-light);
+    vertical-align: middle;
+    color: var(--gray-600);
+}
+.responsive-table tbody tr:nth-child(even) {
+    background-color: var(--gray-50); /* Cebrado más sutil */
+}
+.responsive-table tfoot td {
+    font-weight: 600;
+    background-color: var(--gray-100);
+    padding: 0.75rem 1rem;
+    border-top: 2px solid var(--gray-300);
+}
+.total-label {
+    text-align: right;
+    padding-right: 0.5rem;
+    color: var(--gray-700);
+}
+.total-value {
+    font-weight: 700;
+    color: var(--pink-700); /* Destacar totales con color de acento */
+    text-align: right;
+    font-size: 1rem; /* Un poco más grande el total */
+}
+
+
+/* Formularios dentro de las calculadoras de ejemplo/guía */
+.add-ingredient-form {
+    background-color: var(--gray-50); /* Fondo sutil */
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.5rem; /* Más padding */
+    margin-top: 1.5rem;
+}
+.add-ingredient-form h4 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--purple-700);
+}
+.compact-form-row { /* Para formularios con muchos campos en una fila */
+    display: grid; /* Usar grid para mejor control */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas flexibles y responsivas */
+    gap: 1rem; /* Espacio entre campos */
+    align-items: end; /* Alinear elementos al final para que los botones queden bien */
+    margin-bottom: 1rem; /* Espacio antes del botón */
+}
+/* Ajustar botón en compact-form-row si se necesita */
+.add-ingredient-form .compact-form-row + .btn {
+    display: block; /* Asegurar que sea bloque */
+    width: fit-content; /* Ancho basado en contenido */
+    margin-left: auto; /* Alinear a la derecha */
+    margin-right: auto; /* Centrar si no hay espacio a la derecha */
+}
+
+
+/* Navegación entre Pestañas del Ejemplo */
+.next-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem; /* Más espacio */
+    flex-wrap: wrap; /* Para móvil */
+    gap: 1rem;
+    border-top: var(--border-medium);
+    padding-top: 1.5rem;
+}
+.next-step p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+/* Estilos Específicos Pestaña Procesos/Energía (Adaptado de Horneado) */
+.baking-calculator .baking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adaptable */
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.baking-card {
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem; /* Más padding */
+    box-shadow: var(--shadow);
+}
+.result-box {
+    background-color: var(--purple-50); /* Color de acento suave */
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+.result-box p { margin: 0; font-size: 1rem; font-weight: 500; color: var(--purple-700); }
+.result-box span { font-weight: 700; color: var(--purple-700); } /* Mantener consistencia */
+
+.baking-total {
+    background-color: var(--purple-100); /* Color de acento */
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem; /* Destacar el total de esta sección */
+}
+.baking-total span { color: var(--purple-800); font-weight: 700; }
+
+
+/* Estilos Específicos Pestaña Tiempo (Mano de Obra) */
+.time-calculator .time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.time-card { /* Reutilizar estilo de baking-card */
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+.time-results {
+    background-color: var(--pink-50);
+    border: 1px solid var(--pink-200);
+    border-radius: var(--radius);
+    padding: 1.25rem; /* Más padding */
+    margin-top: 1rem;
+}
+.result-item { /* Estilo para cada línea de resultado */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem; /* Más espacio */
+    font-size: 1rem; /* Texto más grande */
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--pink-200);
+    flex-wrap: wrap; /* Para que quepan en móvil */
+}
+.result-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.result-item span:first-child { color: var(--gray-700); padding-right: 0.5rem; }
+.result-item span:last-child, .result-item strong { color: var(--pink-700); font-weight: 700; text-align: right; }
+.result-item.highlight span:last-child {
+    font-size: 1.2rem; /* Destacar costo de mano de obra */
+    color: var(--pink-800);
+}
+
+/* Estilos Específicos Pestaña Total (Cálculo Final) */
+.total-calculator .total-summary {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile first */
+    gap: 2rem; /* Espacio entre tabla de costos y calculadora de ganancia */
+    margin-bottom: 2rem;
+}
+.total-table tbody tr td:first-child { /* Concepto del gasto */
+    font-weight: 500;
+    color: var(--gray-700);
+}
+.total-table tbody tr td:last-child { /* Costo */
+    font-weight: 600;
+    text-align: right;
+}
+.subtotal-row td {
+    background-color: var(--gray-100) !important; /* Fondo para subtotal */
+    font-weight: 700 !important;
+    color: var(--gray-800) !important;
+    border-top: 2px solid var(--gray-300) !important;
+}
+.total-row td {
+    background-color: var(--purple-100) !important; /* Fondo para costo total */
+    font-weight: 700 !important;
+    font-size: 1.1rem !important; /* Destacar costo total */
+    color: var(--purple-800) !important;
+    border-top: 2px solid var(--purple-300) !important;
+}
+
+.profit-calculator {
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem; /* Buen padding */
+    box-shadow: var(--shadow);
+}
+.profit-calculator h4 { text-align: center; }
+
+.range-container { /* Para alinear range y display */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.percentage-display { /* Para mostrar el % de la ganancia */
+    display: inline-block;
+    font-weight: 700;
+    color: var(--pink-600);
+    font-size: 1.1rem; /* Destacar el porcentaje */
+    min-width: 50px; /* Para que no salte el layout */
+    text-align: right;
+}
+input[type="range"] {
+    flex-grow: 1; /* Ocupar espacio disponible */
+    height: 8px;
+    cursor: pointer;
+    appearance: none;
+    background: var(--gray-200);
+    border-radius: 5px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--pink-500);
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--pink-500);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+
+.profit-result {
+    background-color: var(--pink-50);
+    border: 1px solid var(--pink-200);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+}
+.profit-result .result-item.highlight {
+    font-size: 1.15rem; /* Resaltar precio final */
+    color: var(--pink-800);
+}
+.profit-result .result-item.highlight span:last-child {
+    font-size: 1.3rem; /* Destacar mucho el precio de venta */
+    color: var(--success-color); /* Verde para el precio final */
+}
+
+/* Tips (para secciones de Acabados, Embalaje, Precios, etc.) */
+.packaging-tips, .pricing-tips { /* Clases genéricas para recuadros de tips */
+    background-color: var(--purple-50);
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.95rem; /* Texto de tips un poco más grande */
+}
+.packaging-tips h4, .pricing-tips h4 {
+    color: var(--purple-700);
+    margin-bottom: 1rem; /* Más espacio bajo el título del tip */
+    font-size: 1.1rem;
+}
+.packaging-tips ul, .pricing-tips ul {
+    list-style: none; /* Quitar bullets por defecto */
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.packaging-tips li, .pricing-tips li {
+    margin-bottom: 0.5rem; /* Espacio entre tips */
+    padding-left: 1.5rem; /* Espacio para el icono */
+    color: var(--gray-700);
+    position: relative;
+}
+.packaging-tips li::before, .pricing-tips li::before { /* Usar pseudo-elemento para el icono */
+    content: '👉';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ==================== Estrategias de Precios ==================== */
+.pricing-strategies-section {
+    /* background-color: var(--gray-50); */ /* Ya está en even */
+}
+.strategies-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.strategy-card {
+    background-color: var(--white);
+    border: var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.75rem; /* Más padding */
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Centrar contenido */
+}
+.strategy-card:hover {
+    transform: translateY(-5px); /* Efecto hover más pronunciado */
+    box-shadow: var(--shadow-md);
+}
+.strategy-icon {
+    font-size: 2.5rem; /* Icono más grande */
+    margin-bottom: 1rem;
+    color: var(--purple-500); /* Color de icono */
+}
+.strategy-card h3 {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem; /* Título de estrategia */
+    color: var(--purple-700);
+}
+.strategy-card p {
+    font-size: 0.95rem;
+    flex-grow: 1; /* Texto ocupa espacio */
+    color: var(--gray-600);
+}
+.strategy-card p strong {
+    color: var(--pink-700); /* Destacar parte del texto */
+}
+
+.pricing-recommendation {
+    background-color: var(--pink-100); /* Color de acento */
+    border: 1px solid var(--pink-200);
+    border-radius: var(--radius);
+    padding: 2rem; /* Más padding */
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+.pricing-recommendation h3 {
+    margin-bottom: 1rem;
+    color: var(--pink-800);
+    font-size: 1.3rem;
+}
+.pricing-recommendation p {
+    font-size: 1.05rem;
+    color: var(--pink-700);
+}
+.pricing-recommendation strong {
+    color: var(--pink-900); /* Texto fuerte más oscuro */
+}
+
+
+/* ==================== Recursos y Descargas (Planillas) ==================== */
+.articles-section {
+    background-color: var(--purple-50);
+}
+.download-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin: 2.5rem auto;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column; /* Apilado en móvil por defecto */
+}
+
+.download-visual {
+  line-height: 0;
+  background-color: var(--gray-100); /* Fondo para la imagen */
+  flex-shrink: 0;
+}
+
+.download-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 300px; /* Limitar altura de la imagen en móvil */
+}
+
+.download-content {
+  padding: 2rem; /* Padding generoso */
+  text-align: center; /* Centrado en móvil */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar contenido verticalmente */
+  flex-grow: 1;
+}
+
+.download-content h2 {
+  font-size: 1.6rem; /* Título más grande */
+  color: var(--purple-800);
+  margin-bottom: 0.75rem;
+}
+
+.download-content p {
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.download-content p small {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  display: block;
+  margin-top: 0.5rem; /* Más espacio para el texto pequeño */
+}
+.download-content p small a {
+    font-weight: 600; /* Destacar el enlace del tutorial */
+}
+
+.download-content .btn-primary {
+  margin-top: 1.5rem;
+  padding: 0.9rem 2rem; /* Botón de descarga más prominente */
+  font-size: 1rem;
+  align-self: center; /* Centrar botón si el contenedor es flex */
+  display: inline-flex; /* Para alinear icono */
+  align-items: center;
+}
+
+
+/* ==================== Footer ==================== */
+footer {
+    background-color: var(--gray-800); /* Footer oscuro */
+    padding: 3rem 0 2rem; /* Padding */
+    text-align: center;
+    margin-top: 3rem;
+    color: var(--gray-300); /* Texto claro en footer */
+}
+.subscribe-pitch p {
+    font-size: 1rem;
+    color: var(--gray-200);
+    max-width: 650px;
+    margin: 0 auto 2rem; /* Espaciado */
+    line-height: 1.7;
+}
+.subscribe-pitch strong {
+    color: var(--white);
+}
+.subscribe-pitch .btn { /* Estilo para el botón del footer */
+    margin-top: 1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Más espacio entre iconos */
+    margin: 1.5rem 0 2rem; /* Ajustar márgenes */
+}
+.social-links a svg {
+    width: 28px; /* Iconos más grandes */
+    height: 28px;
+    color: var(--gray-400); /* Color de icono */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-links a:hover svg {
+    color: var(--white); /* Color al pasar el mouse */
+    transform: scale(1.15); /* Efecto sutil */
+}
+.footer-note {
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.9rem;
+    color: var(--gray-400);
+}
+.footer-note a {
+    color: var(--pink-400); /* Enlaces en footer con acento */
+    font-weight: 600;
+}
+.footer-note a:hover {
+    color: var(--pink-300);
+}
+.copyright {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+}
+.copyright a {
+    color: var(--gray-400);
+    text-decoration: none;
+}
+.copyright a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+/* ==================== Estructura del Header y Logo ==================== */
+.site-header {
+    padding: 1rem 0; /* Header más compacto */
+    background-color: var(--white); /* Fondo blanco para el header */
+    box-shadow: var(--shadow-sm); /* Sombra sutil */
+    position: sticky; /* Header pegajoso */
+    top: 0;
+    z-index: 1000; /* Para que esté sobre otros elementos */
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-image {
+    max-height: 50px; /* Altura máxima del logo, ajustar según tu logo */
+    width: auto; /* Mantener proporción */
+}
+
+
+/* ==================== Botón Flotante (FAB) Link ==================== */
+.fab.fab-link {
+    position: fixed;
+    bottom: 30px; /* Más arriba */
+    right: 30px;
+    width: 60px; /* Tamaño estándar */
+    height: 60px;
+    background-color: var(--purple-600); /* Color secundario para FAB */
+    color: var(--white);
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    z-index: 999; /* Un poco menos que el header si es sticky */
+    transition: transform 0.25s ease-in-out, background-color 0.25s ease-in-out;
+}
+
+.fab.fab-link:hover {
+    background-color: var(--purple-700); /* Oscurecer en hover */
+    transform: scale(1.1) rotate(5deg); /* Efecto divertido */
+    color: var(--white); /* Asegurar color en hover */
+}
+
+.fab.fab-link svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+}
+
+
+/* ==================== Media Queries para Responsividad ==================== */
+@media (min-width: 768px) {
+    /* Ajustes para Tablets y Escritorio */
+    .container { padding: 0 1.5rem; }
+    .form-grid:not(.compact-form-row):not(.fixed-costs-grid):not(.dimensions-grid) {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en formularios generales */
+    }
+    .fixed-costs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más flexible para gastos fijos */
+    }
+    .edu-grid { grid-template-columns: 1fr 1fr; }
+    .total-calculator .total-summary { grid-template-columns: 2fr 1fr; } /* Más espacio para la tabla de costos */
+    .strategies-grid { grid-template-columns: repeat(3, 1fr); }
+    .dimensions-grid {
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas para dimensiones en desktop */
+    }
+
+    .download-card { /* Layout horizontal para tarjeta de descarga en desktop */
+        flex-direction: row;
+        align-items: center; /* Centrar verticalmente */
+    }
+    .download-visual {
+        flex-basis: 40%; /* La imagen ocupa el 40% del ancho */
+        max-height: none; /* Permitir que la imagen tome altura completa de la tarjeta */
+    }
+    .download-visual img {
+        max-height: none;
+        height: 100%; /* Imagen ocupa altura completa de su contenedor */
+        border-radius: var(--radius) 0 0 var(--radius); /* Redondear solo esquinas izquierdas */
+    }
+    .download-content {
+        flex-basis: 60%;
+        text-align: left; /* Alinear texto a la izquierda en desktop */
+        padding: 2.5rem; /* Ajustar padding */
+    }
+    .download-content .btn-primary {
+        align-self: flex-start; /* Alinear botón a la izquierda */
+    }
+    .logo-container { text-align: left; } /* Logo a la izquierda en desktop */
+    .site-header .container { display: flex; justify-content: space-between; align-items: center; } /* Para alinear logo y nav si se añade */
+
+}
+
+@media (min-width: 1024px) {
+    /* Ajustes para Escritorio Grande */
+    .compact-form-row {
+        /* grid-template-columns: repeat(4, 1fr); Puede ser demasiado */
+    }
+    .logo-image {
+        max-height: 60px; /* Logo un poco más grande en desktop */
+    }
+
+}

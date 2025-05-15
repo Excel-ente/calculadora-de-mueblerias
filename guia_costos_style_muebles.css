@@ -1,0 +1,494 @@
+/* Estilos específicos para la Guía Interactiva de Costos de Muebles */
+/* Asegúrate que style_muebles.css (con variables --) se cargue ANTES */
+
+.cost-guide-section {
+    padding: 2rem 0; /* Un poco menos de padding para dar más espacio a la guía */
+}
+
+.cost-guide-container {
+    background-color: var(--white);
+    padding: 1.5rem; /* Padding ajustado */
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    max-width: 850px; /* Un poco más ancho para la guía detallada */
+    margin: 1.5rem auto;
+}
+
+/* Barra de Progreso */
+.progress-bar-container {
+    margin-bottom: 2.5rem; /* Más espacio antes de los pasos */
+    padding: 0 0.5rem;
+}
+.progress-bar {
+    width: 100%;
+    background-color: var(--gray-200);
+    border-radius: 99px;
+    overflow: hidden;
+    height: 12px; /* Un poco más gruesa para mejor visibilidad */
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%; /* Inicia en 0, JS la controla */
+    background: linear-gradient(to right, var(--purple-400), var(--purple-600)); /* Un degradado diferente */
+    border-radius: 99px;
+    transition: width 0.4s ease-in-out;
+}
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.75rem; /* Más cerca de la barra */
+}
+.progress-step {
+    font-size: 0.8rem; /* Ligeramente más pequeño para acomodar más pasos si es necesario */
+    color: var(--gray-500); /* Color más suave para pasos inactivos */
+    font-weight: 500;
+    text-align: center;
+    flex: 1; /* Ocupar espacio igual */
+    padding: 0 3px; /* Pequeño padding */
+    transition: color 0.4s ease, font-weight 0.4s ease;
+    position: relative;
+}
+.progress-step.active {
+    color: var(--purple-700); /* Color más fuerte para paso activo */
+    font-weight: 700;
+}
+.progress-step.completed {
+    color: var(--purple-500); /* Color para pasos completados */
+    font-weight: 600;
+}
+
+/* Opcional: Línea visual conectora (si se quiere mantener) */
+.progress-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: -1.35rem; /* Ajustar arriba de la barra (considerando altura de barra de 12px) */
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background-color: var(--gray-200);
+    z-index: -1;
+}
+.progress-step.completed::after, .progress-step.active::after {
+     background-color: var(--purple-400);
+}
+.progress-step:last-child::after {
+    display: none;
+}
+
+
+/* Estructura de los Pasos de la Guía */
+.step {
+    display: none; /* Ocultos por defecto, JS los muestra */
+    border: 1px solid var(--purple-100); /* Borde más sutil con color secundario */
+    padding: 1.75rem; /* Más padding interno en cada paso */
+    margin-top: 1.5rem;
+    border-radius: var(--radius);
+    background-color: var(--purple-50); /* Fondo muy suave para cada paso */
+    animation: fadeIn 0.5s ease; /* Misma animación que en la web original */
+}
+.step.active {
+    display: block;
+}
+.step h2 {
+    text-align: center;
+    color: var(--purple-800); /* Color de título de paso */
+    margin-bottom: 1.5rem;
+    font-size: 1.7rem; /* Títulos de paso más grandes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem; /* Espacio para el emoji */
+}
+.step p.section-intro-step, .step > p:first-of-type { /* Para el párrafo introductorio de cada paso */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--gray-700); /* Texto introductorio más oscuro */
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Formulario de Añadir Material (reutilizando y adaptando de la original) */
+.add-ingredient-guide-form { /* Mantener nombre de clase para reutilizar CSS base */
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200); /* Borde más neutro */
+    box-shadow: var(--shadow-sm);
+}
+.add-ingredient-guide-form h4 {
+    text-align: center;
+    margin-bottom: 1.25rem; /* Más espacio */
+    color: var(--purple-700); /* Título del formulario */
+    font-size: 1.2rem;
+}
+/* Grid Compacto para Materiales (como en la original) */
+.compact-form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: una columna */
+    gap: 1.25rem; /* Un poco más de espacio */
+    margin-bottom: 1.25rem;
+}
+
+/* Estilos de inputs y labels heredados de style_muebles.css */
+.input-with-select select {
+    min-width: 90px; /* Ajuste para unidades de muebles */
+}
+
+/* Mensajes de Error (heredados, pero se puede ajustar si es necesario) */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem; /* Un poco más grande */
+    margin-top: 5px;
+    font-weight: 500;
+}
+/* .error-message.hidden se hereda */
+/* input.invalid, select.invalid se hereda */
+
+
+/* Lista Resumen de Materiales (adaptado de ingredientes) */
+.table-responsive-container { /* Heredado */
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+}
+.ingredients-summary-list { /* Mantener nombre para reutilizar, es una lista de "ingredientes" del mueble */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* border: 1px solid var(--gray-200); */ /* Quitado, ya está en el container */
+    /* border-radius: var(--radius); */
+    overflow: hidden;
+    min-width: 550px; /* Ancho mínimo para que no se apriete tanto */
+}
+.ingredients-summary-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem; /* Más padding vertical */
+    border-bottom: 1px solid var(--gray-100); /* Borde más sutil */
+    background-color: var(--white);
+    font-size: 0.95rem; /* Texto un poco más grande */
+}
+.ingredients-summary-list li:last-child {
+    border-bottom: none;
+}
+.ingredients-summary-list li.list-header {
+    background-color: var(--gray-100); /* Fondo de cabecera neutro */
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 0.85rem; /* Cabecera un poco más grande */
+    text-transform: uppercase;
+    letter-spacing: 0.5px; /* Mejorar legibilidad */
+}
+/* Ajustar anchos de columnas en la lista de materiales */
+.ingredients-summary-list li span:first-child { /* Nombre del Material */
+    flex-grow: 1;
+    margin-right: 1rem;
+    word-break: break-word;
+    color: var(--gray-800); /* Texto más oscuro para el nombre */
+}
+.ingredients-summary-list li span:nth-child(2) { /* Costo para el Mueble */
+    font-weight: 600; /* Costo destacado */
+    min-width: 120px; /* Ancho mínimo para costo */
+    text-align: right;
+    flex-shrink: 0;
+    color: var(--purple-700); /* Color de acento para el costo */
+}
+.ingredients-summary-list li span:nth-child(3) { /* Acción Borrar */
+    min-width: 50px; /* Más espacio para el botón */
+    text-align: right;
+    flex-shrink: 0;
+}
+.ingredients-summary-list .btn-delete-ing { /* Botón Borrar */
+    /* Hereda de style_muebles.css, se puede ajustar aquí si es necesario */
+    /* Ejemplo: background-color: var(--gray-400); */
+}
+.ingredients-summary-list .list-empty {
+    text-align: center;
+    color: var(--gray-500);
+    padding: 1.5rem 1rem; /* Más padding si está vacío */
+    background-color: var(--gray-50);
+    font-style: italic;
+}
+
+.ingredients-total { /* Total de materiales */
+    text-align: right;
+    margin-top: 0.75rem;
+    font-size: 1.15rem;
+    color: var(--purple-800);
+    font-weight: 700; /* Total bien destacado */
+    padding: 0.5rem;
+    background-color: var(--purple-50);
+    border-radius: var(--radius);
+}
+
+/* Resultados Calculados Intermedios (Mano de Obra en Paso 4) */
+.calculated-result {
+    text-align: center;
+    font-size: 1.15rem;
+    margin-top: 1.5rem; /* Más separación */
+    padding: 1rem;
+    background-color: var(--purple-100); /* Fondo con color de acento */
+    border-radius: var(--radius);
+    color: var(--purple-800);
+    border: 1px solid var(--purple-200);
+}
+.calculated-result strong {
+    color: var(--purple-900);
+    font-weight: 700;
+}
+
+/* Tarjeta Final de Resultados (Paso 6) */
+.final-results-card {
+    margin-top: 2rem;
+    padding: 1.75rem; /* Más padding */
+    border: 2px solid var(--success-color); /* Borde verde éxito */
+    border-radius: var(--radius);
+    background-color: #f0fdf4; /* Verde muy pálido (relacionado con success-color) */
+    box-shadow: var(--shadow-md);
+}
+.final-results-card h3 {
+    text-align: center;
+    color: var(--gray-800); /* Título del resumen */
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+.final-results-card h3 span { /* Para el nombre del mueble */
+    color: var(--purple-700);
+    font-style: italic;
+}
+.final-results-card p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem; /* Espacio entre líneas de resultados */
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--gray-300);
+    text-align: left;
+    font-size: 1rem; /* Texto de resultados más grande */
+    color: var(--gray-700); /* Color base para texto de resultados */
+}
+.final-results-card p:last-of-type {
+    border-bottom: none;
+}
+.final-results-card strong {
+    font-weight: 700;
+    margin-left: 0.5rem;
+    text-align: right;
+    flex-shrink: 0;
+    color: var(--gray-900); /* Valores en un color más oscuro */
+}
+.final-results-card .total-cost-row strong {
+    color: var(--error-color); /* Costo total en rojo */
+    font-size: 1.2em; /* Destacar más */
+}
+.final-results-card .final-price-row strong {
+    color: var(--success-color); /* Precio de venta en verde */
+    font-size: 1.4em; /* Destacar mucho más */
+}
+.final-results-card p.disclaimer {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-top: 1.5rem;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    line-height: 1.5;
+}
+
+
+/* Acciones PDF (heredado, se puede ajustar) */
+.pdf-actions {
+    margin-top: 2rem; /* Más espacio */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+/* .pdf-actions .btn-secondary (y su :disabled) se hereda de style_muebles.css */
+/* .pdf-actions .btn-secondary svg se hereda */
+
+/* Indicador de Carga (Loader) (heredado) */
+.loader {
+  border: 4px solid var(--gray-200);
+  border-top: 4px solid var(--purple-500); /* Loader con color secundario */
+  border-radius: 50%;
+  width: 30px; /* Un poco más grande */
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0.75rem auto; /* Centrado */
+}
+/* .loader.hidden se hereda */
+/* @keyframes spin se hereda */
+
+
+/* Navegación entre pasos (botones Anterior/Siguiente) */
+.step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem; /* Más espacio antes de los botones */
+    border-top: 1px solid var(--purple-200); /* Línea separadora más visible */
+    padding-top: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+/* Si solo hay un botón (ej. primer o último paso), alinearlo */
+.step-nav:has(.next-step-btn:last-child:first-child) { /* Solo botón Siguiente */
+     justify-content: flex-end;
+}
+.step-nav:has(.prev-step-btn:last-child:first-child) { /* Solo botón Anterior */
+     justify-content: flex-start;
+}
+
+
+/* Estilos para el Modal Post-Descarga PDF (reutilizados y adaptados) */
+.post-download-modal {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 0;
+    max-width: 520px; /* Un poco más ancho */
+    width: calc(100% - 30px); /* Mejor manejo en móviles */
+    overflow: visible; /* Para el botón de cierre */
+}
+.post-download-modal[open] {
+    animation: fadeInModal 0.3s ease-out;
+}
+.post-download-modal::backdrop {
+    background-color: rgba(31, 25, 45, 0.6); /* Fondo más oscuro, con un toque de púrpura */
+    backdrop-filter: blur(4px);
+}
+.modal-content {
+    padding: 2rem 2.5rem; /* Más padding */
+    text-align: center;
+    position: relative;
+}
+.modal-close-btn { /* Botón de cerrar el modal */
+    position: absolute;
+    top: 12px; /* Ajustar posición */
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 2rem; /* Más grande */
+    font-weight: 300; /* Más liviano */
+    color: var(--gray-400);
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px; /* Área de click más grande */
+    transition: color 0.2s ease;
+}
+.modal-close-btn:hover { color: var(--gray-700); }
+
+.modal-logo-container { margin-bottom: 1.25rem; }
+.modal-logo { max-width: 120px; height: auto; } /* Ajustar tamaño del logo en modal */
+
+.modal-content h3 {
+    color: var(--purple-700); /* Título del modal */
+    margin-bottom: 1rem;
+    font-size: 1.5rem; /* Más grande */
+}
+.modal-content p {
+    color: var(--gray-700); /* Texto del modal */
+    margin-bottom: 1.25rem;
+    line-height: 1.65;
+}
+.modal-content .contribution-text {
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-600);
+}
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+.modal-btn { /* Botones dentro del modal */
+    width: 100%;
+    max-width: 300px; /* Ancho máximo botones */
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem; /* Espacio para iconos */
+    padding: 0.8rem 1.5rem; /* Padding botones modal */
+}
+.modal-btn.reset-btn { /* Botón de cerrar/resetear */
+    margin-top: 1rem;
+    background-color: var(--gray-100);
+    border-color: var(--gray-300);
+    color: var(--gray-700);
+}
+.modal-btn.reset-btn:hover {
+    background-color: var(--gray-200);
+}
+
+/* Centrado del Modal (heredado) */
+.post-download-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+/* Animación (heredada) */
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); } /* Sutil animación de entrada */
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+
+/* Media Queries para Responsividad de la Guía */
+@media (min-width: 600px) {
+    .cost-guide-container {
+        padding: 2rem;
+    }
+    .compact-form-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+    }
+    .form-grid:not(.compact-form-grid) { /* Grids normales, ej. Paso 3, 4, 5 */
+         grid-template-columns: 1fr 1fr;
+    }
+     .final-results-card p {
+        font-size: 1.05rem; /* Un poco más grande en tablet */
+    }
+    .modal-actions { /* Botones del modal lado a lado en tablet */
+        flex-direction: row;
+        justify-content: center;
+    }
+    .modal-btn { width: auto; }
+}
+
+@media (min-width: 768px) {
+     .cost-guide-section { padding: 2.5rem 0; }
+     .step h2 { font-size: 1.9rem; } /* Títulos de paso más grandes */
+     .progress-step { font-size: 0.85rem; }
+
+     .compact-form-grid { /* Para el form de añadir materiales */
+        /* Podría ser más flexible si los labels son largos */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        align-items: end;
+    }
+     /* Si se quiere que el botón de "Agregar Material" ocupe todo el ancho en desktop: */
+    .add-ingredient-guide-form .btn-secondary {
+        /* grid-column: 1 / -1;  Descomentar si se quiere full-width */
+        /* margin-top: 0.5rem; */
+    }
+}
+@media (min-width: 992px) { /* Pantallas más grandes */
+    .compact-form-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas para añadir material en desktop */
+    }
+    .form-grid:not(.compact-form-grid) { /* Como en Paso 3, 4, 5 */
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Más flexible */
+    }
+}   

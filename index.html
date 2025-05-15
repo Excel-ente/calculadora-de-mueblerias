@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Costos para fabricantes de muesbles | Excel-ente</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Calculadora GRATIS para fabricantes de muebles. Aprendé fácil a calcular costos de materiales, tu tiempo y poné precios justos a tus creaciones.">
+    <meta name="keywords" content="calculadora costos muebles, precio muebles argentina, calcular costos carpinteria, emprender muebleria, gastos taller, precio justo muebles">
+    <meta name="author" content="Tu Taller Eficiente">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mueblerias.calculadoradecostos.com.ar"> <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mueblerias.calculadoradecostos.com.ar"> <meta property="og:title" content="Calculadora de Costos para Muebles | Tu Taller Eficiente">
+    <meta property="og:description" content="Calculá fácil el costo real y el precio justo para tus muebles. ¡Ideal para carpinteros y emprendedores!">
+    <meta property="og:image" content="[URL_IMAGEN_PARA_COMPARTIR]"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.mueblerias.calculadoradecostos.com.ar"> <meta property="twitter:title" content="Calculadora de Costos para Muebles | Tu Taller Eficiente">
+    <meta property="twitter:description" content="Calculá fácil el costo real y el precio justo para tus muebles. ¡Ideal para carpinteros y emprendedores!">
+    <meta property="twitter:image" content="[URL_IMAGEN_PARA_COMPARTIR]"> <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon_muebles.ico" type="image/x-icon">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de Costos para Muebles - Tu Taller Eficiente",
+      "url": "https://www.mueblerias.calculadoradecostos.com.ar", "description": "Herramienta web gratuita para ayudar a fabricantes de muebles y carpinteros a calcular costos y precios de sus trabajos y productos.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "ARS"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Tu Taller Eficiente"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"> <img src="logo_excelente.svg" alt="Logo Tu Taller Eficiente" class="logo-image">
+                </a>
+            </div>
+            </div>
+    </header>
+
+        <main>
+
+
+        <img src="logo.svg" alt="Logo Excel-ente" style="display: block; margin: 2rem auto; max-height: 400px;">
+
+
+
+        <section class="hero">
+            <div class="container">
+                <h1>¿Te cuesta saber cuánto cobrar por tus muebles?</h1>
+                <p class="intro-text">Sabemos que te rompés la cabeza pensando cuánto cobrar por ese mueble que tanto te costó hacer. Entre la madera, los tornillos, el barniz, y tus horas de laburo... ¡uff! Esta calculadora es <strong>GRATIS</strong> y te ayuda a sacar esos números fácil y rápido.</p>
+                <a href="guia_costos_muebles.html" class="btn btn-primary btn-lg">¡Calculá el Costo Detallado de Tu Mueble!</a>
+            </div>
+        </section>
+
+        <section id="calculator" class="calculator-section">
+            <div class="container">
+                <h2>Calculadora Rápida (Materiales / Cortes)</h2>
+                <p class="section-intro">Usá esta calculadora para saber al toque cuánto te costó ese pedazo de material que usaste, o para calcular el precio de un corte específico de una placa.</p>
+                <div class="calculator-card">
+
+                    <div class="form-group">
+                        <label for="name">
+                            Nombre del Material / Placa
+                            <span class="tooltip">
+                                <span class="tooltip-icon">?</span>
+                                <span class="tooltip-text">Ej: Placa MDF 18mm, Pino Elliotis 1x4, Barniz al Agua.</span>
+                            </span>
+                        </label>
+                        <input type="text" id="name" placeholder="Ej: Melamina Blanca 18mm">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalPrice">
+                            Precio Total de Compra ($)
+                            <span class="tooltip">
+                                <span class="tooltip-icon">?</span>
+                                <span class="tooltip-text">¿Cuánto pagaste por la placa entera, el listón, la lata de barniz, etc.? Ej: 25000</span>
+                            </span>
+                        </label>
+                        <input type="number" id="totalPrice" placeholder="Ej: 25000" min="0" step="any">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="materialType">Tipo de Cálculo:</label>
+                        <select id="materialType">
+                            <option value="general">Calcular costo por Cantidad Usada (General)</option>
+                            <option value="placa">Calcular costo por Corte de Placa (Área)</option>
+                        </select>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <div id="placaInputs" class="hidden conditional-inputs">
+                        <h4>Datos de la Placa Comprada:</h4>
+                        <div class="form-grid dimensions-grid">
+                            <div class="form-group">
+                                <label for="purchasedPlacaWidth">Ancho Placa Comprada:</label>
+                                <input type="number" id="purchasedPlacaWidth" placeholder="Ej: 1830">
+                            </div>
+                            <div class="form-group">
+                                <label for="purchasedPlacaHeight">Alto Placa Comprada:</label>
+                                <input type="number" id="purchasedPlacaHeight" placeholder="Ej: 2750">
+                            </div>
+                             <div class="form-group">
+                                <label for="purchasedPlacaUnit">Unidad Medidas:</label>
+                                <select id="purchasedPlacaUnit">
+                                    <option value="mm">mm</option>
+                                    <option value="cm">cm</option>
+                                    <option value="m">m</option>
+                                </select>
+                            </div>
+                        </div>
+                        <h4>Dimensiones del Corte Necesario:</h4>
+                        <p class="small-text instruction-text">Ingresá las medidas del corte usando la <strong>misma unidad</strong> que la placa comprada.</p>
+                        <div class="form-grid dimensions-grid">
+                            <div class="form-group">
+                                <label for="cutWidth">Ancho del Corte:</label>
+                                <input type="number" id="cutWidth" placeholder="Ej: 600">
+                            </div>
+                            <div class="form-group">
+                                <label for="cutHeight">Alto del Corte:</label>
+                                <input type="number" id="cutHeight" placeholder="Ej: 400">
+                            </div>
+                        </div>
+                        <div id="unit-warning-placa" class="unit-warning hidden"></div> </div>
+
+                    <div id="generalInputs" class="conditional-inputs"> <h4>Datos de la Compra y Uso (General):</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="purchasedQuantity">
+                                    Cantidad Total Comprada
+                                    <span class="tooltip">
+                                        <span class="tooltip-icon">?</span>
+                                        <span class="tooltip-text">¿Cuánto trae el paquete, listón, envase? Ej: 1 (placa), 3.05 (metros), 100 (tornillos).</span>
+                                    </span>
+                                </label>
+                                <div class="input-with-select">
+                                    <input type="number" id="purchasedQuantity" placeholder="Ej: 1" min="0.001" step="any">
+                                    <select id="purchasedUnit">
+                                        <option value="unid">Unidades (unid)</option>
+                                        <option value="m2">Metros Cuadrados (m²)</option>
+                                        <option value="m">Metros Lineales (m)</option>
+                                        <option value="cm">Centímetros (cm)</option>
+                                        <option value="mm">Milímetros (mm)</option>
+                                        <option value="kg">Kilos (kg)</option>
+                                        <option value="g">Gramos (g)</option>
+                                        <option value="lt">Litros (lt)</option>
+                                        <option value="ml">Mililitros (ml)</option>
+                                        <option value="placa">Placa Entera</option>
+                                        <option value="varilla">Varilla Entera</option>
+                                        <option value="rollo">Rollo Entero</option>
+                                        <option value="par">Par</option>
+                                        <option value="set">Set/Juego</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="usedQuantity">
+                                    Cantidad que Usaste en tu Mueble
+                                    <span class="tooltip">
+                                        <span class="tooltip-icon">?</span>
+                                        <span class="tooltip-text">¿Cuánto de ese material necesitaste para ESTE mueble? Ej: 0.5 (m²), 20 (unid), 150 (cm).</span>
+                                    </span>
+                                </label>
+                                <div class="input-with-select">
+                                    <input type="number" id="usedQuantity" placeholder="Ej: 0.5" min="0" step="any">
+                                    <select id="usedUnit">
+                                        </select>
+                                </div>
+                                <div id="unit-warning-general" class="unit-warning hidden"></div> </div>
+                        </div>
+                    </div>
+
+                    <div id="result" class="result-card hidden">
+                        <h3>Resultado:</h3>
+                        <p id="result-text"></p>
+                        <div class="result-actions">
+                            <button id="copy-btn" class="btn-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="currentColor" style="margin-right: 0.4em;"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272c-8.8 0-16-7.2-16-16s7.2-16 16-16H320V256H192c-17.7 0-32-14.3-32-32V192H128V128H64z"/></svg>
+                                Copiar
+                            </button>
+                            <button id="share-btn" class="btn-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="currentColor" style="margin-right: 0.4em;"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-146.1 84.4c-16.4-13.6-37.8-21.9-61.6-21.9c-53 0-96 43-96 96s43 96 96 96c23.8 0 45.2-8.3 61.6-21.9L256.7 356.1c-.5 3.9-.7 7.9-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-23.8 0-45.2 8.3-61.6 21.9L148.7 307.9c.5-3.9 .7-7.9 .7-11.9s-.2-8-.7-11.9l142.1-81.6c16.4 13.6 37.8 21.9 61.6 21.9zM48 224c0 17.7 14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32zm320 160c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32zm0-256c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                                Compartir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="educational-section basic-concepts">
+            <div class="container">
+                <h2>Entendiendo Tus Gastos: ¡Lo Básico para Mueblistas!</h2>
+                <p class="section-intro">Para poner un precio justo a tus muebles, primero tenés que saber cuánto te cuesta hacerlos. Hay dos tipos de gastos principales:</p>
+
+                <div class="edu-grid">
+                    <div class="edu-card">
+                        <div class="edu-card-header">
+                            <h3>Gastos Variables (o Directos)</h3>
+                            <span>(los que cambian con cada mueble)</span>
+                        </div>
+                        <div class="edu-card-content">
+                            <p>Son los que tenés específicamente para hacer un mueble. ¡Si hacés más muebles, gastás más de esto!</p>
+                            <ul>
+                                <li><strong>Maderas y Placas:</strong> Pino, paraíso, MDF, melamina, etc. (¡Usá la calcu de arriba para esto!).</li>
+                                <li><strong>Herrajes y Adhesivos:</strong> Tornillos, clavos, bisagras, correderas, manijas, cola de carpintero.</li>
+                                <li><strong>Acabados:</strong> Lijas, barniz, pintura, laca, cera, tintes.</li>
+                                <li><strong>Embalaje Específico:</strong> Si usás cartón, film, etc., para proteger ESE mueble al entregarlo.</li>
+                                <li><strong>Consumibles Directos:</strong> Mechas que se gastan, discos de corte, etc. (proporcional al uso).</li>
+                                <li><strong>Luz de las Máquinas (Directa):</strong> Lo que gastan la sierra, el taladro, la lijadora *mientras trabajás en ESE mueble*. (¡La guía detallada te ayuda con esto!).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-card-header">
+                            <h3>Gastos Fijos (o Indirectos)</h3>
+                             <span>(los que tenés todos los meses)</span>
+                        </div>
+                        <div class="edu-card-content">
+                            <p>Son los gastos que tenés sí o sí, todos los meses, vendas o no vendas. ¡Hay que cubrirlos con tus precios!</p>
+                            <ul>
+                                <li><strong>Alquiler del Taller</strong> (o parte proporcional si es en casa).</li>
+                                <li><strong>Servicios del Taller:</strong> Luz general, agua, internet, gas.</li>
+                                <li><strong>Impuestos:</strong> Monotributo, Ingresos Brutos, etc.</li>
+                                <li><strong>¡Tu Sueldo!</strong> (Fijate un monto que necesitás ganar por mes).</li>
+                                <li><strong>Desgaste Herramientas/Amortización:</strong> Una partecita del valor de tus máquinas caras.</li>
+                                <li><strong>Otros Fijos:</strong> Celular, software, contador, publicidad básica, vehículo (si es del taller).</li>
+                            </ul>
+                            <p><a href="#fixed-costs-calculator" class="link-highlight">¡Calculá cuánto sumar por mueble con la calculadora de abajo!</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="value-time-note">
+                    <h3>¡Tu Tiempo de Trabajo Vale Oro! ⏱️💰</h3>
+                    <p>Muchos se olvidan de esto: <strong>tus horas de diseño, corte, armado, lijado, pintura... ¡todo ese tiempo y tu habilidad tienen un costo!</strong> No es solo lo que gastás en madera y tornillos.</p>
+                    <p><strong>¿Cuánto vale tu hora?</strong> Pensá cuánto te gustaría ganar por mes (tu sueldo fijo + ganancias) y dividilo por las horas que realmente trabajás fabricando. ¡Es un buen punto de partida!</p>
+                    <p><small>La <a href="guia_costos_muebles.html" class="link-highlight">Guía Interactiva Detallada</a> te ayuda a calcular esto fácil.</small></p>
+                </div>
+
+                <div class="formula-card simplified">
+                  <div class="formula-card-header">
+                      <h3>La Fórmula Simplificada para el Precio</h3>
+                  </div>
+                  <div class="formula-card-content">
+                      <div class="formula-box">
+                          <p>( Materiales + Herrajes + Acabados ) + ( Tu Tiempo de Trabajo ) + ( Pedacito de Gastos Fijos ) + ( Tu Ganancia ) = <strong>Precio de Venta</strong></p>
+                      </div>
+                      <p class="text-center">¡No te asustes! Con la <a href="guia_costos_muebles.html" class="link-highlight">Guía Interactiva</a>, esto se calcula paso a paso.</p>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fixed-costs-calculator" class="fixed-costs-section">
+          <div class="container">
+              <div class="section-header">
+                  <h2>Calculadora de Gastos Fijos del Taller (Mensuales)</h2>
+                  <p class="section-intro">Anotá acá todos tus gastos fijos del mes. Después, estimá cuántos muebles (o proyectos grandes) hacés por mes para saber cuánto "sumarle" de gasto fijo a cada uno.</p>
+              </div>
+
+              <div class="fixed-costs-calculator">
+                  <div class="fixed-costs-form">
+                      <h4>1. Listá tus Gastos Fijos del Mes ($)</h4>
+                      <div class="form-grid fixed-costs-grid">
+                          <div class="form-group">
+                              <label for="rent">Alquiler Taller / Espacio</label>
+                              <input type="number" id="rent" placeholder="Ej: 50000" min="0" step="any" value="0">
+                          </div>
+                          <div class="form-group">
+                              <label for="services">Servicios (Luz, Agua, Internet...)</label>
+                              <input type="number" id="services" placeholder="Ej: 15000" min="0" step="any" value="0">
+                          </div>
+                          <div class="form-group">
+                              <label for="taxes">Impuestos (Monotributo, IIBB...)</label>
+                              <input type="number" id="taxes" placeholder="Ej: 10000" min="0" step="any" value="0">
+                          </div>
+                          <div class="form-group">
+                            <label for="salary">Tu Sueldo Fijo Deseado</label>
+                            <input type="number" id="salary" placeholder="Ej: 200000" min="0" step="any" value="0">
+                          </div>
+                          <div class="form-group">
+                              <label for="marketing">Marketing / Publicidad Fija</label>
+                              <input type="number" id="marketing" placeholder="Ej: 5000" min="0" step="any" value="0">
+                          </div>
+                           <div class="form-group">
+                              <label for="amortization">Amortización Herramientas</label>
+                               <span class="tooltip">
+                                  <span class="tooltip-icon">?</span>
+                                  <span class="tooltip-text">Estimá cuánto se desgastan tus máquinas caras por mes. (Ej: Costo Máquina / Meses Vida Útil)</span>
+                              </span>
+                              <input type="number" id="amortization" placeholder="Ej: 8000" min="0" step="any" value="0">
+                          </div>
+                          <div class="form-group">
+                              <label for="other-fixed">Otros Fijos (Celular, software...)</label>
+                              <input type="number" id="other-fixed" placeholder="Ej: 7000" min="0" step="any" value="0">
+                          </div>
+                      </div>
+
+                      <div class="fixed-costs-total">
+                          <h4>Total Gastos Fijos del Mes: <span id="monthly-fixed-total">$0.00</span></h4>
+                      </div>
+
+                      <div class="fixed-costs-distribution">
+                          <h4>2. Repartí el Gasto Fijo entre tus Muebles</h4>
+                          <div class="form-group">
+                              <label for="monthly-products">¿Cuántos muebles (o proyectos promedio) estimás hacer/vender por mes?</label>
+                              <input type="number" id="monthly-products" placeholder="Ej: 10" min="1" step="1" value="10">
+                          </div>
+                          <div class="distribution-result">
+                              <h4>👉 Gasto Fijo a sumar por CADA Mueble: <span id="fixed-per-product">$0.00</span></h4>
+                              <p>Este es el monto que deberías incluir en el costo de CADA mueble que hagas para cubrir tus gastos fijos. ¡Usalo en la <a href="guia_costos_muebles.html" class="link-highlight">Guía Detallada</a>!</p>
+                          </div>
+                      </div>
+                      <p class="disclaimer">Nota: Esta es una forma simple de repartir. Si hacés muebles muy diferentes (una silla vs. un placard), podrías necesitar un método más avanzado, pero esto es un buen comienzo.</p>
+                  </div>
+              </div>
+          </div>
+        </section>
+
+        <section class="cake-example-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ejemplo Práctico: Calculando el Costo de una "Repisa Flotante"</h2>
+                    <p class="section-intro">Veamos un ejemplo completo, paso a paso. Podés modificar los valores para practicar.</p>
+                </div>
+                <div class="cake-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="materials">1. Materiales</button>
+                        <button class="tab-btn" data-tab="process">2. Procesos</button>
+                        <button class="tab-btn" data-tab="finishes">3. Acabados</button>
+                        <button class="tab-btn" data-tab="packaging_ex">4. Embalaje</button>
+                        <button class="tab-btn" data-tab="time_ex">5. Tu Tiempo</button>
+                        <button class="tab-btn" data-tab="total_ex">6. Precio Final</button>
+                    </div>
+                     <div class="tabs-content">
+                         <div class="tab-content active" id="materials-tab">
+                             <h3>1. Costo de Materiales (Madera, Hierro, Tornillos)</h3>
+                             <p>Calculá el costo de cada material para esta repisa específica.</p>
+                             <div class="ingredients-calculator">
+                                 <table class="ingredients-table responsive-table">
+                                     <thead><tr><th>Material</th><th>Compra (Cant.)</th><th>Compra (Precio $)</th><th>Usado (Cant.)</th><th>Costo ($)</th><th>Acción</th></tr></thead>
+                                     <tbody id="materials-tbody-example">
+                                         <tr><td>Madera Pino (Tabla 1x6")</td><td>3.05 m (1 tabla)</td><td>$3500</td><td>1.2 m</td><td>$1377.05</td> <td><button class="btn-delete-row">X</button></td></tr>
+                                         <tr><td>Ménsula de Hierro (par)</td><td>1 par</td><td>$2800</td><td>1 par</td><td>$2800.00</td><td><button class="btn-delete-row">X</button></td></tr>
+                                         <tr><td>Tornillos Fix 4x50 (caja)</td><td>100 unid</td><td>$900</td><td>8 unid</td><td>$72.00</td> <td><button class="btn-delete-row">X</button></td></tr>
+                                     </tbody>
+                                     <tfoot><tr><td colspan="4" class="total-label">Total Materiales:</td><td id="materials-total-example" class="total-value">$4249.05</td><td></td></tr></tfoot>
+                                 </table>
+                                 <div class="add-ingredient-form example-form">
+                                     <h4>Agregar Otro Material al Ejemplo</h4>
+                                     <div class="form-row compact-form-row">
+                                         <div class="form-group"><label for="ex-mat-name">Material</label><input type="text" id="ex-mat-name" placeholder="Ej: Tapa canto PVC"></div>
+                                         <div class="form-group"><label for="ex-mat-total-qty">Cant. Comprada</label><div class="input-with-select"><input type="number" id="ex-mat-total-qty" placeholder="10" min="0" step="any"><select id="ex-mat-total-unit"><option value="m">m</option><option value="m2">m²</option><option value="unid">unid</option><option value="kg">kg</option><option value="lt">lt</option><option value="cm">cm</option><option value="mm">mm</option><option value="g">g</option><option value="ml">ml</option></select></div></div>
+                                         <div class="form-group"><label for="ex-mat-price">Precio Compra ($)</label><input type="number" id="ex-mat-price" placeholder="600" min="0" step="any"></div>
+                                         <div class="form-group"><label for="ex-mat-used-qty">Cant. Usada</label><div class="input-with-select"><input type="number" id="ex-mat-used-qty" placeholder="2" min="0" step="any"><select id="ex-mat-used-unit"></select></div></div>
+                                     </div>
+                                     <button id="add-material-btn-example" class="btn btn-secondary">Agregar al Ejemplo</button>
+                                     <div id="ex-mat-unit-warning" class="unit-warning hidden"></div>
+                                 </div>
+                             </div>
+                             <div class="next-step"><p>Calculá todos tus materiales y pasá al siguiente paso.</p><button class="btn btn-primary next-tab-btn" data-next="process">Siguiente: Procesos</button></div>
+                         </div>
+                         <div class="tab-content" id="process-tab">
+                              <h3>2. Costo de Procesos y Energía (Corte, Lijado, Ensamblado)</h3>
+                              <p>Estimá cuánto gastás de luz de máquinas, y el desgaste de herramientas pequeñas (lijas, mechas) por CADA repisa.</p>
+                              <div class="baking-calculator">
+                                  <div class="baking-grid">
+                                      <div class="baking-card">
+                                          <h4>Consumo Eléctrico (Máquinas)</h4>
+                                          <div class="form-group"><label for="machine-power-avg">Potencia Promedio Máquinas (Watts)</label><input type="number" id="machine-power-avg" value="800" min="0"></div>
+                                          <div class="form-group"><label for="process-time">Tiempo Uso Máquinas (Minutos)</label><input type="number" id="process-time" value="30" min="0"></div>
+                                          <div class="form-group"><label for="electricity-cost-kwh">Costo Electricidad por kWh ($)</label><input type="number" id="electricity-cost-kwh" value="50" min="0" step="any"></div>
+                                          <div class="result-box"><p>Costo Electricidad Máquinas: $<span id="machine-electricity-result">20.00</span></p></div>
+                                      </div>
+                                      <div class="baking-card">
+                                          <h4>Consumibles Pequeños</h4>
+                                          <div class="form-group"><label for="consumables-cost">Costo Estimado (Lijas, Mechas, etc.) por Repisa ($)</label><input type="number" id="consumables-cost" value="150" min="0" step="any"></div>
+                                          <div class="result-box"><p>Costo Consumibles: $<span id="consumables-result">150.00</span></p></div>
+                                      </div>
+                                      <div class="baking-card">
+                                          <h4>Amortización Herramientas Grandes</h4>
+                                          <div class="form-group"><label for="tool-total-cost">Costo Total Herramientas (Ej: Sierra)</label><input type="number" id="tool-total-cost" value="300000" min="0"></div>
+                                          <div class="form-group"><label for="tool-lifespan-projects">Vida Útil Estimada (En cantidad de proyectos)</label><input type="number" id="tool-lifespan-projects" value="500" min="1"></div>
+                                          <div class="result-box"><p>Costo por Uso Herramienta: $<span id="tool-amortization-result">600.00</span></p></div>
+                                      </div>
+                                  </div>
+                                  <div class="baking-total"><h4>Total Costo Procesos/Energía: $<span id="process-total-example">770.00</span></h4></div>
+                              </div>
+                              <div class="next-step"><button class="btn btn-outline prev-tab-btn" data-prev="materials">Anterior</button><button class="btn btn-primary next-tab-btn" data-next="finishes">Siguiente: Acabados</button></div>
+                         </div>
+                         <div class="tab-content" id="finishes-tab">
+                            <h3>3. Costo de Acabados (Barniz, Laca, Cera)</h3>
+                            <p>Agregá los costos de los productos que usás para darle el toque final a la repisa.</p>
+                            <div class="decoration-calculator">
+                                <table class="decoration-table responsive-table">
+                                    <thead><tr><th>Producto de Acabado</th><th>Compra (Cant.)</th><th>Compra (Precio $)</th><th>Usado (Cant.)</th><th>Costo ($)</th><th>Acción</th></tr></thead>
+                                    <tbody id="finishes-tbody-example"><tr><td>Barniz Satinado al Agua</td><td>1 lt</td><td>$4500</td><td>0.1 lt (100ml)</td><td>$450.00</td><td><button class="btn-delete-row">X</button></td></tr></tbody>
+                                    <tfoot><tr><td colspan="4" class="total-label">Total Acabados:</td><td id="finishes-total-example" class="total-value">$450.00</td><td></td></tr></tfoot>
+                                </table>
+                                <div class="add-ingredient-form example-form">
+                                    <h4>Agregar Producto de Acabado al Ejemplo</h4>
+                                    <div class="form-row compact-form-row">
+                                        <div class="form-group"><label>Producto</label><input type="text" id="ex-finish-name" placeholder="Ej: Cera en pasta"></div>
+                                        <div class="form-group"><label>Cant. Compra</label><div class="input-with-select"><input type="number" id="ex-finish-total-qty" min="0" step="any" placeholder="250"><select id="ex-finish-total-unit"><option value="ml">ml</option><option value="lt">lt</option><option value="g">g</option><option value="kg">kg</option><option value="unid">unid</option></select></div></div>
+                                        <div class="form-group"><label>Precio Compra ($)</label><input type="number" id="ex-finish-price" min="0" step="any" placeholder="1200"></div>
+                                        <div class="form-group"><label>Cant. Usada</label><div class="input-with-select"><input type="number" id="ex-finish-used-qty" min="0" step="any" placeholder="50"><select id="ex-finish-used-unit"></select></div></div>
+                                    </div>
+                                    <button id="add-finish-btn-example" class="btn btn-secondary">Agregar</button>
+                                    <div id="ex-finish-unit-warning" class="unit-warning hidden"></div>
+                                </div>
+                            </div>
+                            <div class="next-step"><button class="btn btn-outline prev-tab-btn" data-prev="process">Anterior</button><button class="btn btn-primary next-tab-btn" data-next="packaging_ex">Siguiente: Embalaje</button></div>
+                         </div>
+                         <div class="tab-content" id="packaging_ex-tab">
+                              <h3>4. Costo de Embalaje (Si es necesario para esta repisa)</h3>
+                              <p>Sumá el costo del film, cartón, pluribol, etc., si la repisa se entrega embalada.</p>
+                              <div class="packaging-calculator">
+                                  <table class="packaging-table responsive-table">
+                                      <thead><tr><th>Elemento de Embalaje</th><th>Costo Unitario ($)</th><th>Cantidad Usada</th><th>Costo Total ($)</th><th>Acción</th></tr></thead>
+                                      <tbody id="packaging-tbody-example">
+                                          <tr><td>Film Stretch (Rollo de X metros)</td><td>$10/metro (calculado)</td> <td>3 metros</td><td>$30.00</td><td><button class="btn-delete-row">X</button></td></tr>
+                                          <tr><td>Etiqueta con logo</td><td>$50</td><td>1</td><td>$50.00</td><td><button class="btn-delete-row">X</button></td></tr>
+                                      </tbody>
+                                      <tfoot><tr><td colspan="3" class="total-label">Total Embalaje:</td><td id="packaging-total-example" class="total-value">$80.00</td><td></td></tr></tfoot>
+                                  </table>
+                                  <div class="add-ingredient-form example-form">
+                                      <h4>Agregar Elemento de Embalaje al Ejemplo</h4>
+                                      <div class="form-row compact-form-row">
+                                          <div class="form-group"><label>Elemento</label><input type="text" id="ex-pack-name" placeholder="Ej: Pluribol"></div>
+                                          <div class="form-group"><label>Costo Unitario ($)</label><input type="number" id="ex-pack-price" min="0" step="any" placeholder="100"></div>
+                                          <div class="form-group"><label>Cantidad Usada</label><input type="number" id="ex-pack-qty" min="1" step="1" value="1" placeholder="1"></div>
+                                      </div>
+                                      <button id="add-packaging-btn-example" class="btn btn-secondary">Agregar</button> </div>
+                              </div>
+                              <div class="next-step"><button class="btn btn-outline prev-tab-btn" data-prev="finishes">Anterior</button><button class="btn btn-primary next-tab-btn" data-next="time_ex">Siguiente: Tu Tiempo</button></div>
+                          </div>
+                         <div class="tab-content" id="time_ex-tab">
+                             <h3>5. El Valor de Tu Tiempo de Laburo</h3>
+                             <p>Calculá cuánto tiempo te lleva hacer esta repisa y cuánto vale tu hora de carpintero/a.</p>
+                             <div class="time-calculator">
+                                 <div class="time-grid">
+                                     <div class="time-card">
+                                         <h4>Tiempo de Fabricación (Minutos)</h4>
+                                         <div class="form-group"><label>Diseño y Planificación:</label><input type="number" class="time-input-example" value="20" min="0"></div>
+                                         <div class="form-group"><label>Corte de Madera:</label><input type="number" class="time-input-example" value="15" min="0"></div>
+                                         <div class="form-group"><label>Lijado y Preparación:</label><input type="number" class="time-input-example" value="30" min="0"></div>
+                                         <div class="form-group"><label>Ensamblado:</label><input type="number" class="time-input-example" value="25" min="0"></div>
+                                     </div>
+                                     <div class="time-card">
+                                         <h4>Tiempo Adicional (Minutos)</h4>
+                                         <div class="form-group"><label>Aplicación de Acabados:</label><input type="number" class="time-input-example" value="40" min="0"></div>
+                                         <div class="form-group"><label>Limpieza del Taller:</label><input type="number" class="time-input-example" value="15" min="0"></div>
+                                         <div class="form-group"><label>Empaquetado (si aplica):</label><input type="number" class="time-input-example" value="5" min="0"></div>
+                                         <div class="form-group"><label>Otros (Ej: Compras):</label><input type="number" class="time-input-example" value="10" min="0"></div>
+                                     </div>
+                                     <div class="time-card">
+                                         <h4>Valor de tu Hora de Trabajo</h4>
+                                         <div class="form-group">
+                                             <label for="hourly-rate-example">¿Cuánto vale tu hora de trabajo? ($)</label>
+                                             <input type="number" id="hourly-rate-example" value="3500" min="0" step="any">
+                                         </div>
+                                         <div class="time-results">
+                                             <div class="result-item"><span>Tiempo Total Invertido:</span><span id="total-time-example">2 horas 40 min</span></div>
+                                             <div class="result-item highlight"><span>Costo Mano de Obra:</span><span id="time-value-example">$9333.33</span></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="next-step"><button class="btn btn-outline prev-tab-btn" data-prev="packaging_ex">Anterior</button><button class="btn btn-primary next-tab-btn" data-next="total_ex">Siguiente: Precio Final</button></div>
+                         </div>
+                         <div class="tab-content" id="total_ex-tab">
+                             <h3>6. Calculando el Precio Final de la Repisa (Ejemplo)</h3>
+                             <p>¡Llegó el momento! Sumemos todo y definamos el precio para esta repisa.</p>
+                             <div class="total-calculator">
+                                 <div class="total-summary">
+                                     <table class="total-table responsive-table">
+                                         <thead><tr><th>Concepto del Gasto</th><th>Costo ($)</th></tr></thead>
+                                         <tbody>
+                                             <tr><td>1. Materiales Directos</td><td id="final-materials-example">$4249.05</td></tr>
+                                             <tr><td>2. Procesos y Energía</td><td id="final-process-example">$770.00</td></tr>
+                                             <tr><td>3. Acabados</td><td id="final-finishes-example">$450.00</td></tr>
+                                             <tr><td>4. Embalaje</td><td id="final-packaging-example">$80.00</td></tr>
+                                             <tr><td>5. Tu Tiempo de Laburo (Mano de Obra)</td><td id="final-time-example">$9333.33</td></tr>
+                                             <tr class="subtotal-row"><td><strong>Subtotal Costos Directos + Mano Obra</strong></td><td id="subtotal-example"><strong>$14882.38</strong></td></tr>
+                                             <tr><td>6. Gastos Fijos del Taller (calculado arriba)</td><td id="final-fixed-costs-example">$0.00</td></tr>
+                                             <tr class="total-row"><td><strong>COSTO TOTAL DE FABRICACIÓN</strong></td><td id="total-cost-example"><strong>$14882.38</strong></td></tr>
+                                         </tbody>
+                                     </table>
+                                     <div class="profit-calculator">
+                                         <h4>7. Definí Tu Ganancia</h4>
+                                         <div class="form-group">
+                                             <label for="profit-percentage-example">Porcentaje de Ganancia deseado (%)</label>
+                                             <div class="range-container">
+                                                <input type="range" id="profit-percentage-example" min="10" max="200" value="50" step="5">
+                                                <span id="profit-percentage-value-example" class="percentage-display">50%</span>
+                                              </div>
+                                         </div>
+                                         <div class="profit-result">
+                                             <div class="result-item"><span>Tu Ganancia Estimada:</span><span id="profit-amount-example">$7441.19</span></div>
+                                              <div class="form-group small-margin">
+                                                <label for="portions-example">¿Cuántas repisas iguales son?</label>
+                                                <input type="number" id="portions-example" value="1" min="1" step="1" style="max-width: 80px;">
+                                              </div>
+                                             <div class="result-item"><span>Precio por Repisa (si son varias):</span><span id="portion-price-example">$22323.57</span></div>
+                                             <div class="result-item highlight"><span>PRECIO VENTA SUGERIDO (Total):</span><span id="final-price-example">$22323.57</span></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="pricing-tips">
+                                     <h4>¡Importante! Antes de poner el precio final:</h4>
+                                     <ul>
+                                         <li><strong>Chusmeá a la competencia:</strong> ¿Cuánto cobran otros por repisas parecidas?</li>
+                                         <li><strong>Pensá en tu valor agregado:</strong> ¿Usaste madera de primera? ¿Diseño original? ¿Terminaciones impecables?</li>
+                                         <li><strong>Confianza en tu laburo:</strong> ¡No tengas miedo de cobrar lo que vale tu trabajo!</li>
+                                         <li><strong>Comunicá el valor:</strong> Explicá a tus clientes por qué tus muebles son especiales.</li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div class="next-step"><button class="btn btn-outline prev-tab-btn" data-prev="time_ex">Anterior</button><button id="recalculate-example-btn" class="btn btn-primary">Recalcular Ejemplo</button></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="pricing-strategies-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>¿Cómo Poner el Precio Final? Algunas Ideas</h2>
+                    <p class="section-intro">Calcular el costo es el primer gran paso. Después, pensá qué forma de poner precios te conviene más.</p>
+                </div>
+                <div class="strategies-grid">
+                  <div class="strategy-card">
+                    <div class="strategy-icon">💰</div>
+                    <h3>Costo + Ganancia</h3>
+                    <p>Es lo que hicimos en el ejemplo: sumás todos tus gastos (costo total) y le agregás el porcentaje de ganancia que querés.</p>
+                    <p><strong>Ideal para:</strong> Asegurarte de cubrir todo y tener una ganancia predecible. ¡Es la base!</p>
+                  </div>
+                  <div class="strategy-card">
+                    <div class="strategy-icon">🌟</div>
+                    <h3>Basado en Valor</h3>
+                    <p>Pensás en cuánto está dispuesto a pagar tu cliente por la calidad, diseño único, personalización, marca o solución que ofreces.</p>
+                    <p><strong>Ideal para:</strong> Muebles de diseño, trabajos a medida, productos con fuerte diferencial.</p>
+                  </div>
+                  <div class="strategy-card">
+                    <div class="strategy-icon">👀</div>
+                    <h3>Basado en Competencia</h3>
+                    <p>Investigá los precios de otros fabricantes o tiendas. Te posicionás en un rango similar, superior o inferior según tu estrategia.</p>
+                    <p><strong>Ideal para:</strong> Entender el mercado, si tus productos son estándar o tenés mucha competencia.</p>
+                  </div>
+                </div>
+                <div class="pricing-recommendation">
+                  <h3>Nuestro consejo:</h3>
+                  <p>Usá una mezcla: <strong>Calculá bien tus costos</strong> (base fundamental), mirá de reojo a la <strong>competencia</strong> para no estar fuera de mercado, y si tu mueble tiene un <strong>valor especial</strong> (diseño, calidad, artesanía), ¡no dudes en reflejarlo en el precio!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="articles-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recursos y Ayuditas Extra para tu Taller</h2>
+                    <p class="section-intro">Acá te dejamos algunas cositas que te pueden servir para optimizar tu trabajo.</p>
+                </div>
+                <div class="download-card">
+                    <div class="download-visual">
+                        <img src="imagen_planilla_muebles.jpg" alt="Planilla de Despiece para Muebles" >
+                    </div>
+                    <div class="download-content">
+                        <h2>Planilla Práctica para Despiece y Cortes</h2>
+                        <p>Esta planilla de Excel te puede ayudar a organizar los cortes de madera para aprovechar mejor el material y reducir desperdicios. ¡Ideal para optimizar tus placas!</p>
+                        <p><small>Podés ver un tutorial de cómo usarla en nuestro canal de YouTube: <a href="[TU_LINK_VIDEO_YOUTUBE_PLANILLA]" target="_blank" rel="noopener noreferrer">Ver Video Tutorial</a>.</small></p>
+                        <a href="descargas/planilla_despiece_muebles.zip" download class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor" style="margin-right: 0.5em;"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                            Descargar Planilla (.zip)
+                        </a>
+                    </div>
+                </div>
+                 </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="subscribe-pitch">
+                    <p><strong>¿Te sirvió la calculadora?</strong> ¡Genial! Si querés más data, herramientas y novedades para tu taller de muebles, ¡seguime en las redes y suscribite a mi canal de YouTube!</p>
+                     <a href="https://www.youtube.com/@excel-ente" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ir al Canal de YouTube</a>
+                </div>
+                <div class="social-links">
+
+                    <a href="https://www.instagram.com/excel.entes" target="_blank" rel="noopener noreferrer" aria-label="Instagram Excel-ente" title="Instagram Excel-ente">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" height="1.5em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@excel-ente" target="_blank" rel="noopener noreferrer" aria-label="Youtube Excel-ente" title="Youtube Excel-ente"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" height="1.5em"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.203z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@excel.entes" target="_blank" rel="noopener noreferrer" aria-label="TikTok Excel-ente" title="TikTok Excel-ente">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" height="1.5em"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                    </a>
+                </div>
+
+                <p class="footer-note">Hecho con ❤️ por <a href="https://excel-ente.com" target="_blank" rel="noopener noreferrer">Excel-ente</a> para ayudar a emprendedores como vos 🚀</p>
+
+                <p class="copyright">
+                    © <span id="current-year"></span> Tu Taller Eficiente | Todos los derechos reservados |
+                    <a href="politica_privacidad_muebles.html">Política de Privacidad</a> |
+                    <a href="acerca_de_muebles.html">Acerca de</a> |
+                    <a href="contacto_muebles.html">Contacto</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <a href="guia_costos_muebles.html" class="fab fab-link" aria-label="Ir a la Guía Interactiva de Costos de Muebles" title="¡Calculá el costo detallado de tu mueble aquí!">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512" fill="currentColor"><path d="M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c2.1 6 1.7 12.6-1.2 18.1S463.5 224 457.1 224H54.9c-6.4 0-12.2-4.3-14.1-10.6c-2.9-5.5-3.3-12.1-1.2-18.1zM496 272c0-26.5-21.5-48-48-48H64c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H416c53 0 96-43 96-96V272zM192 352c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V352zm96 0c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V352zm96 0c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V352z"/></svg>
+    </a>
+
+    <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Costos para fabricantes de muesbles | Excel-ente</title>
+    <meta name="description" content="Calculá paso a paso el costo de fabricación de tus muebles, desde los materiales hasta tu ganancia. ¡Fácil y rápido!">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon_muebles.ico" type="image/x-icon">
+
+    </head>
+<body>
+    <header class="site-header">
+        <div class="container logo-container">
+            <a href="index.html" aria-label="Volver al inicio de Tu Taller Eficiente">
+                <img src="logo_muebles.svg" alt="Logo Tu Taller Eficiente" class="logo-image">
+            </a>
+        </div>
+    </header>
+
+<main>
+    <section class="cost-guide-section">
+        <div class="container">
+            <h1>🪑 Guía Interactiva: ¡Calculá el Costo de Tu Mueble!</h1>
+            <p class="section-intro">Te acompaño paso a paso para que descubras cuánto te cuesta fabricar ese mueble y a qué precio venderlo. ¡Es más fácil de lo que pensás!</p>
+
+            <div class="cost-guide-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <span class="progress-step active" data-step="1">Nombre</span>
+                        <span class="progress-step" data-step="2">Materiales</span>
+                        <span class="progress-step" data-step="3">Otros Costos</span>
+                        <span class="progress-step" data-step="4">Tu Tiempo</span>
+                        <span class="progress-step" data-step="5">Gastos Taller</span>
+                        <span class="progress-step" data-step="6">Precio Final</span>
+                    </div>
+                </div>
+
+                <div class="step active" id="step-1">
+                    <h2>Paso 1: ¿Cómo se llama tu creación? 🏷️</h2>
+                    <div class="form-group">
+                        <label for="guide-mueble-name">Nombre del Mueble, Diseño, Proyecto, etc.:</label>
+                        <input type="text" id="guide-mueble-name" placeholder="Ej: Mesa de Luz 'Nórdica', Silla 'Escandinava'" required>
+                        <div class="error-message hidden" id="error-mueble-name">¡Dale un nombre a tu mueble!</div>
+                    </div>
+                    <div class="step-nav">
+                        <button class="btn btn-primary next-step-btn">Siguiente: Materiales →</button>
+                    </div>
+                </div>
+
+                <div class="step" id="step-2">
+                    <h2>Paso 2: Los Materiales que Usaste 🪵🔩</h2>
+                    <p>Agregá uno por uno los materiales que lleva tu mueble (madera, placas, herrajes, tornillos, etc.).</p>
+
+                    <div class="add-ingredient-guide-form calculator-card"> <h4>Añadir Material:</h4>
+                        <div class="form-grid compact-form-grid">
+                            <div class="form-group">
+                                <label for="guide-mat-name">Material:</label>
+                                <input type="text" id="guide-mat-name" placeholder="Ej: Placa MDF 18mm, Pino Elliotis 1x4">
+                                <div class="error-message hidden" id="error-mat-name">¿Qué material es?</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="guide-mat-price">Compra: Precio Total ($)</label>
+                                <input type="number" id="guide-mat-price" placeholder="Ej: 8500 (por la placa entera)" min="0.01" step="any">
+                                <div class="error-message hidden" id="error-mat-price">¿Cuánto te costó?</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="guide-mat-total-qty">Compra: Cantidad Total</label>
+                                <div class="input-with-select">
+                                    <input type="number" id="guide-mat-total-qty" placeholder="Ej: 1 (placa), 3.05 (metros)" min="0.001" step="any">
+                                    <select id="guide-mat-total-unit">
+                                        <option value="unid">Unidades (unid)</option>
+                                        <option value="m2">Metros Cuadrados (m²)</option>
+                                        <option value="m">Metros Lineales (m)</option>
+                                        <option value="kg">Kilos (kg)</option>
+                                        <option value="g">Gramos (g)</option>
+                                        <option value="lt">Litros (lt)</option>
+                                        <option value="ml">Mililitros (ml)</option>
+                                        <option value="placa">Placa Entera</option>
+                                        <option value="varilla">Varilla Entera</option>
+                                        <option value="rollo">Rollo Entero</option>
+                                        <option value="par">Par</option>
+                                        <option value="set">Set/Juego</option>
+                                    </select>
+                                </div>
+                                 <div class="error-message hidden" id="error-mat-total-qty">¿Cuánto compraste en total?</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="guide-mat-used-qty">Cantidad Usada en ESTE Mueble</label>
+                                <div class="input-with-select">
+                                    <input type="number" id="guide-mat-used-qty" placeholder="Ej: 0.75 (m²), 20 (unid)" min="0" step="any">
+                                     <select id="guide-mat-used-unit">
+                                        </select>
+                                </div>
+                                <div id="guide-mat-unit-warning" class="unit-warning hidden"></div>
+                                <div class="error-message hidden" id="error-mat-used-qty">¿Cuánto usaste para este mueble?</div>
+                            </div>
+                        </div>
+                        <button id="add-material-guide-btn" class="btn btn-secondary">Agregar Material a la Lista</button>
+                        <div class="error-message hidden" id="error-add-material">Revisá los datos del material.</div>
+                    </div>
+
+                    <h4>Materiales Agregados a este Mueble:</h4>
+                    <div class="table-responsive-container">
+                        <ul id="guide-materials-list" class="ingredients-summary-list"> <li class="list-header">
+                                 <span>Material</span>
+                                 <span>Costo para el Mueble</span>
+                                 <span>Borrar</span>
+                             </li>
+                             <li class="list-empty">Todavía no agregaste materiales. ¡Empezá ahora!</li>
+                         </ul>
+                    </div>
+                    <div class="ingredients-total"> <strong>Costo Total de Materiales: <span id="guide-materials-total">$0.00</span></strong>
+                    </div>
+                    <div class="error-message hidden" id="error-materials-list">¡Acordate de agregar al menos un material!</div>
+
+                    <div class="step-nav">
+                        <button class="btn btn-outline prev-step-btn">← Anterior</button>
+                        <button class="btn btn-primary next-step-btn">Siguiente: Otros Costos →</button>
+                    </div>
+                </div>
+
+                <div class="step" id="step-3">
+                    <h2>Paso 3: Acabados, Consumibles y Embalaje 🎨📦</h2>
+                    <p>Estimá cuánto gastás en pintura, barniz, lijas, pegamento (si no lo mediste antes como material), y el embalaje para ESTE mueble en particular (estos son opcionales).</p>
+                    <div class="form-grid">
+                         <div class="form-group">
+                             <label for="guide-finishes-cost">Costo de Acabados (pintura, barniz, laca, etc.) para ESTE mueble ($):</label>
+                             <input type="number" id="guide-finishes-cost" placeholder="Ej: 1200 (total pintura y barniz)" min="0" step="any" value="0">
+                             <div class="error-message hidden" id="error-finishes-cost">Si gastaste en acabados, poné un número (o 0).</div>
+                         </div>
+                         <div class="form-group">
+                            <label for="guide-consumables-cost">Costo de Consumibles (lijas, mechas, cola extra, etc.) para ESTE mueble ($):</label>
+                            <input type="number" id="guide-consumables-cost" placeholder="Ej: 350 (total lijas, etc.)" min="0" step="any" value="0">
+                            <div class="error-message hidden" id="error-consumables-cost">Si gastaste en consumibles, poné un número (o 0).</div>
+                        </div>
+                         <div class="form-group">
+                             <label for="guide-packaging-cost">Costo de Embalaje (film, cartón, telgopor, etc.) si lo lleva ($):</label>
+                             <input type="number" id="guide-packaging-cost" placeholder="Ej: 250 (si lo embalás)" min="0" step="any" value="0">
+                             <div class="error-message hidden" id="error-packaging-cost">Si lo embalás, poné un número (o 0).</div>
+                         </div>
+                    </div>
+                     <div class="step-nav">
+                        <button class="btn btn-outline prev-step-btn">← Anterior</button>
+                        <button class="btn btn-primary next-step-btn">Siguiente: Tu Tiempo →</button>
+                    </div>
+                </div>
+
+                <div class="step" id="step-4">
+                    <h2>Paso 4: ¡Tu Tiempo de Laburo Vale! ⏳💪</h2>
+                    <p>¿Cuánto tiempo te llevó diseñar, preparar, cortar, armar, lijar, pintar y terminar este mueble? ¿Y cuánto vale tu hora de trabajo calificado?</p>
+                     <div class="form-grid">
+                         <div class="form-group">
+                             <label for="guide-time">Tiempo Total de Fabricación (Diseño, Corte, Armado, Pintura, etc.) (en Minutos):</label>
+                             <input type="number" id="guide-time" placeholder="Ej: 360 (para 6 horas de laburo)" min="0" step="1" required>
+                             <div class="error-message hidden" id="error-time">¿Cuántos minutos te llevó en total?</div>
+                         </div>
+                         <div class="form-group">
+                             <label for="guide-hourly-rate">¿Cuánto querés ganar por Hora de Trabajo como Carpintero/a? ($):</label>
+                             <input type="number" id="guide-hourly-rate" placeholder="Ej: 3500 (tu valor por hora)" min="0" step="any" required>
+                             <div class="error-message hidden" id="error-hourly-rate">¿Cuánto vale tu hora de experto?</div>
+                         </div>
+                     </div>
+                     <div class="calculated-result">
+                         Costo de tu Mano de Obra para este mueble: <strong id="guide-labor-cost-display">$0.00</strong>
+                     </div>
+                     <div class="step-nav">
+                        <button class="btn btn-outline prev-step-btn">← Anterior</button>
+                        <button class="btn btn-primary next-step-btn">Siguiente: Gastos del Taller →</button>
+                    </div>
+                </div>
+
+                <div class="step" id="step-5">
+                    <h2>Paso 5: Tu "Pedacito" de Gastos Fijos del Taller 🏠🔧</h2>
+                     <p>Este es el "poquito" de tus gastos generales del taller (alquiler, luz general, monotributo, tu sueldo fijo si tenés, etc.) que le "cargás" a cada mueble que hacés. Es opcional, pero muy recomendable.</p>
+                     <div class="form-group">
+                         <label for="guide-fixed-cost">Monto de Gasto Fijo del Taller por Mueble/Proyecto ($):</label>
+                         <input type="number" id="guide-fixed-cost" placeholder="Usá el valor de la 'Calculadora de Gastos Fijos'" min="0" step="any" value="0">
+                         <small>Si no lo calculaste todavía, podés ir a la sección <a href="index_muebles.html#fixed-costs-calculator" target="_blank" rel="noopener noreferrer">Calculadora de Gastos Fijos del Taller</a> en la página principal (se abre en otra pestaña) para sacarlo fácil.</small>
+                         <div class="error-message hidden" id="error-fixed-cost">Si tenés este dato, ponelo (o 0).</div>
+                     </div>
+                     <div class="step-nav">
+                        <button class="btn btn-outline prev-step-btn">← Anterior</button>
+                        <button class="btn btn-primary next-step-btn">Siguiente: ¡El Precio Final! →</button>
+                    </div>
+                </div>
+
+                <div class="step" id="step-6">
+                    <h2>Paso 6: ¡A Sacar el Precio Final de tu Mueble! 🤑🏷️</h2>
+                    <p>Ya casi estamos. Ahora definamos tu ganancia y cuántos muebles iguales son (si es una tanda).</p>
+                     <div class="form-grid">
+                         <div class="form-group">
+                             <label for="guide-profit">Porcentaje de Ganancia que querés tener (%):</label>
+                             <input type="number" id="guide-profit" value="50" min="0" step="1" required>
+                             <small>Pensá cuánto querés que te quede limpio después de cubrir todos los gastos.</small>
+                             <div class="error-message hidden" id="error-profit">¿Qué porcentaje de ganancia buscás?</div>
+                         </div>
+                         <div class="form-group">
+                             <label for="guide-units">¿Cuántos muebles idénticos son en esta tanda/pedido?</label>
+                             <input type="number" id="guide-units" value="1" min="1" step="1" required>
+                             <small>Si es un solo mueble, dejá 1. Si son varios iguales, poné la cantidad.</small>
+                             <div class="error-message hidden" id="error-units">¿Cuántos son? (Mínimo 1)</div>
+                         </div>
+                     </div>
+                     <button id="calculate-final-guide-btn" class="btn btn-primary full-width btn-lg">¡Calcular Precio Sugerido del Mueble!</button>
+
+                     <div id="guide-final-results" class="final-results-card hidden">
+                         <h3>Resumen del Cálculo para: <span id="res-mueble-name">Tu Mueble</span></h3>
+                         <p>Costo Total de Materiales, Acabados y Embalaje: <strong id="res-material-otros">$0.00</strong></p>
+                         <p>Costo de Mano de Obra (Tu Tiempo): <strong id="res-labor">$0.00</strong></p>
+                         <p>Costo de Gastos Fijos del Taller (asignado a este mueble): <strong id="res-fixed">$0.00</strong></p>
+                         <hr>
+                         <p class="total-cost-row">COSTO TOTAL DE FABRICACIÓN DEL MUEBLE: <strong id="res-total-cost">$0.00</strong></p>
+                         <hr>
+                         <p>Tu Ganancia Estimada (<span id="res-profit-perc">0</span>%): <strong id="res-profit">$0.00</strong></p>
+                         <p class="final-price-row">PRECIO DE VENTA SUGERIDO (por <span id="res-units-info1">1</span> mueble): <strong id="res-final-price">$0.00</strong></p>
+                         <p id="res-unit-price-row" class="hidden">Precio Sugerido por cada Mueble (si son varios): <strong id="res-unit-price">$0.00</strong></p>
+                         <p class="disclaimer small-text">Recordá que este es un precio <strong>sugerido</strong>. ¡Considerá también la calidad de tus materiales, tu diseño único, los precios de la competencia en tu zona y cuánto valora el cliente tu trabajo artesanal!</p>
+
+                         <div class="pdf-actions">
+                            <button id="generate-pdf-btn" class="btn btn-secondary" disabled>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V464 416 352zm64 88c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h48zM480 352h-8c-6.6 0-12 5.4-12 12v100c0 6.6 5.4 12 12 12h8c6.6 0 12-5.4 12-12V364c0-6.6-5.4-12-12-12zM416 352c-8.8 0-16 7.2-16 16v80c0 8.8 7.2 16 16 16s16-7.2 16-16V368c0-8.8-7.2-16-16-16z"/></svg>
+                                Guardar Resumen en PDF
+                            </button>
+                            <div id="pdf-loader" class="loader hidden"></div>
+                            <div class="error-message hidden" id="error-pdf">Hubo un problema al generar el PDF.</div>
+                        </div>
+                     </div>
+
+                     <div class="step-nav">
+                        <button class="btn btn-outline prev-step-btn">← Anterior</button>
+                    </div>
+                </div>
+
+            </div> 
+        </div> 
+        </section>
+</main>
+
+<dialog id="post-pdf-modal" class="post-download-modal">
+    <div class="modal-content">
+        <button class="modal-close-btn" aria-label="Cerrar modal" data-close-modal>X</button>
+        <div class="modal-logo-container">
+            <img src="logo_muebles.svg" alt="Logo Tu Taller Eficiente" class="modal-logo">
+        </div>
+        <h3>¡Listo! Tu resumen está guardado.</h3>
+        <p>Espero que esta guía te ayude un montón a ponerle precios justos a tus muebles. 😊</p>
+        <p class="contribution-text">Si esta herramienta gratuita te sirvió y querés dar una mano para que siga creciendo y ayudando a más fabricantes, podés considerar estas opciones:</p>
+        <div class="modal-actions">
+            <a href="https://paypal.me/turkienich" target="_blank" rel="noopener noreferrer" class="btn btn-secondary modal-btn">
+                🚀 Realizar una donación
+            </a>
+            <a href="https://www.youtube.com/channel/UC0oyLTDH-VQ_4vO9fNOjdGQ/join" target="_blank" rel="noopener noreferrer" class="btn btn-primary modal-btn">
+                ▶️ Suscribirse a YouTube
+            </a>
+        </div>
+        <button class="btn btn-outline modal-btn reset-btn" data-close-modal>Cerrar y Seguir Calculando</button>
+    </div>
+</dialog>
+
+<footer>
+    <div class="container">
+        <div class="subscribe-pitch">
+            <p><strong>¿Te sirvió la calculadora?</strong> ¡Genial! Si querés más data, herramientas y novedades para tu taller de muebles, ¡seguime en las redes y suscribite a mi canal de YouTube!</p>
+                <a href="https://www.youtube.com/@excel-ente" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ir al Canal de YouTube</a>
+        </div>
+        <div class="social-links">
+
+            <a href="https://www.instagram.com/excel.entes" target="_blank" rel="noopener noreferrer" aria-label="Instagram Excel-ente" title="Instagram Excel-ente">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" height="1.5em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@excel-ente" target="_blank" rel="noopener noreferrer" aria-label="Youtube Excel-ente" title="Youtube Excel-ente"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" height="1.5em"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.203z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@excel.entes" target="_blank" rel="noopener noreferrer" aria-label="TikTok Excel-ente" title="TikTok Excel-ente">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" height="1.5em"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+            </a>
+        </div>
+
+        <p class="footer-note">Hecho con ❤️ por <a href="https://excel-ente.com" target="_blank" rel="noopener noreferrer">Excel-ente</a> para ayudar a emprendedores como vos 🚀</p>
+
+        <p class="copyright">
+            © <span id="current-year"></span> Tu Taller Eficiente | Todos los derechos reservados |
+            <a href="politica_privacidad_muebles.html">Política de Privacidad</a> |
+            <a href="acerca_de_muebles.html">Acerca de</a> |
+            <a href="contacto_muebles.html">Contacto</a>
+        </p>
+    </div>
+</footer>
+
+<script src="guia_costos_script_muebles.js"></script>
+<script>
+    // Script simple para el año en el footer de esta página
+    document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+    // Manejo básico del modal (si no está en el script principal)
+    const postPdfModal = document.getElementById('post-pdf-modal');
+    const closeButtons = postPdfModal.querySelectorAll('[data-close-modal]');
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            postPdfModal.close();
+        });
+    });
+    // Opcional: cerrar si se hace clic fuera del contenido del modal (en el backdrop)
+    postPdfModal.addEventListener('click', function(event) {
+      if (event.target === postPdfModal) {
+        postPdfModal.close();
+      }
+    });
+</script>
+</body>
+</html>
