@@ -6,7 +6,7 @@
     <title>Guía de Costos para fabricantes de muesbles | Excel-ente</title>
     <meta name="description" content="Calculá paso a paso el costo de fabricación de tus muebles, desde los materiales hasta tu ganancia. ¡Fácil y rápido!">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="index.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="guia_costos_style_muebles.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon_muebles.ico" type="image/x-icon">
@@ -16,7 +16,7 @@
     <header class="site-header">
         <div class="container logo-container">
             <a href="index.html" aria-label="Volver al inicio de Tu Taller Eficiente">
-                <img src="logo_muebles.svg" alt="Logo Tu Taller Eficiente" class="logo-image">
+                <img src="logo_excelente.svg" alt="Logo Tu Taller Eficiente" class="logo-image">
             </a>
         </div>
     </header>
@@ -247,7 +247,7 @@
     <div class="modal-content">
         <button class="modal-close-btn" aria-label="Cerrar modal" data-close-modal>X</button>
         <div class="modal-logo-container">
-            <img src="logo_muebles.svg" alt="Logo Tu Taller Eficiente" class="modal-logo">
+            <img src="logo_excelente.svg" alt="Logo Tu Taller Eficiente" class="modal-logo">
         </div>
         <h3>¡Listo! Tu resumen está guardado.</h3>
         <p>Espero que esta guía te ayude un montón a ponerle precios justos a tus muebles. 😊</p>
@@ -293,26 +293,63 @@
     </div>
 </footer>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
 <script src="guia_costos_script_muebles.js"></script>
 <script>
     // Script simple para el año en el footer de esta página
     document.getElementById('current-year-footer').textContent = new Date().getFullYear();
-
     // Manejo básico del modal (si no está en el script principal)
     const postPdfModal = document.getElementById('post-pdf-modal');
     const closeButtons = postPdfModal.querySelectorAll('[data-close-modal]');
 
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
-            postPdfModal.close();
+            if (postPdfModal && typeof postPdfModal.close === 'function') { // Verificar que el modal exista y tenga el método
+                postPdfModal.close();
+            }
         });
     });
     // Opcional: cerrar si se hace clic fuera del contenido del modal (en el backdrop)
-    postPdfModal.addEventListener('click', function(event) {
-      if (event.target === postPdfModal) {
-        postPdfModal.close();
-      }
-    });
+    if (postPdfModal) { // Verificar que el modal exista
+        postPdfModal.addEventListener('click', function(event) {
+          if (event.target === postPdfModal) {
+            postPdfModal.close();
+          }
+        });
+    }
+    // Al final de guia_costos_script_muebles.js, dentro de DOMContentLoaded
+
+    // ... (tu código existente de la guía) ...
+
+    // Script para el año en el footer de la página de la guía
+    const yearFooterGuide = document.getElementById('current-year-footer');
+    if (yearFooterGuide) {
+        yearFooterGuide.textContent = new Date().getFullYear();
+    }
+
+    // Manejo del modal post-PDF específico de la guía
+    const guidePostPdfModal = document.getElementById('post-pdf-modal'); // Usar un nombre de variable diferente si 'postPdfModal' ya está usado globalmente en el script.
+    if (guidePostPdfModal) {
+        const guideModalCloseButtons = guidePostPdfModal.querySelectorAll('[data-close-modal]');
+
+        guideModalCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                guidePostPdfModal.close();
+            });
+        });
+
+        guidePostPdfModal.addEventListener('click', function(event) {
+        if (event.target === guidePostPdfModal) {
+            guidePostPdfModal.close();
+        }
+        });
+    }
 </script>
+
+
+
 </body>
 </html>
